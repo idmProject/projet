@@ -1,0 +1,12 @@
+E:\Projet IDM\IDM2\IDM2\bin\Release\IDM2.exe.config
+E:\Projet IDM\IDM2\IDM2\bin\Release\IDM1.mdb
+E:\Projet IDM\IDM2\IDM2\bin\Release\IDM2.exe
+E:\Projet IDM\IDM2\IDM2\bin\Release\IDM2.pdb
+E:\Projet IDM\IDM2\IDM2\obj\Release\IDM2.AjoutPorte.resources
+E:\Projet IDM\IDM2\IDM2\obj\Release\IDM2.formPrincipal.resources
+E:\Projet IDM\IDM2\IDM2\obj\Release\IDM2.Properties.Resources.resources
+E:\Projet IDM\IDM2\IDM2\obj\Release\IDM2.AjoutClient.resources
+E:\Projet IDM\IDM2\IDM2\obj\Release\IDM2.csproj.GenerateResource.Cache
+E:\Projet IDM\IDM2\IDM2\obj\Release\IDM2.exe
+E:\Projet IDM\IDM2\IDM2\obj\Release\IDM2.pdb
+E:\Projet IDM\IDM2\IDM2\obj\Release\IDM2.csprojResolveAssemblyReference.cache

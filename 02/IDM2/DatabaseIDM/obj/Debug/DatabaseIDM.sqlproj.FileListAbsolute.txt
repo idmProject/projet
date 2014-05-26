@@ -1,0 +1,5 @@
+D:\IDM PROJECT\PROTOTYPE\02\IDM2\DatabaseIDM\bin\Debug\DatabaseIDM.dacpac
+D:\IDM PROJECT\PROTOTYPE\02\IDM2\DatabaseIDM\bin\Debug\DatabaseIDM.dll
+D:\IDM PROJECT\PROTOTYPE\02\IDM2\DatabaseIDM\bin\Debug\DatabaseIDM.pdb
+D:\IDM PROJECT\PROTOTYPE\02\IDM2\DatabaseIDM\obj\Debug\DatabaseIDM.dll
+D:\IDM PROJECT\PROTOTYPE\02\IDM2\DatabaseIDM\obj\Debug\DatabaseIDM.pdb

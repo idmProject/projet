@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9E390A0F-7C02-4745-A434-267A361C3AA9}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IDM2</RootNamespace>
+    <AssemblyName>IDM2</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseDonnee\Client.cs">
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDonnee\CodeElectronique.cs">
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDonnee\Contexte.cs" />
+    <Compile Include="BaseDonnee\Contrat.cs">
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDonnee\DataSetVille.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetVille.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDonnee\DonneeMemoire.cs" />
+    <Compile Include="BaseDonnee\DossierLocalView.cs">
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDonnee\DossierStationnementView.cs">
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDonnee\Espace.cs">
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDonnee\Local.cs">
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDonnee\MethodePaiement.cs">
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDonnee\Model_IDM.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model_IDM.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDonnee\Model_IDM.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDonnee\Model_IDM.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model_IDM.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDonnee\Paiement.cs">
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDonnee\Site.cs">
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDonnee\Stationnement.cs">
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDonnee\Taxe.cs">
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDonnee\Telephone.cs">
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDonnee\TypeEspace.cs">
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDonnee\Vehicule.cs">
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDonnee\Ville.cs">
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controleur\CoContrat.cs" />
+    <Compile Include="Controleur\CoEspace.cs" />
+    <Compile Include="Controleur\CoLocal.cs" />
+    <Compile Include="Controleur\CoPaiement.cs" />
+    <Compile Include="Controleur\CoSite.cs" />
+    <Compile Include="Controleur\CoStationnement.cs" />
+    <Compile Include="Controleur\CoTaxe.cs" />
+    <Compile Include="Controleur\CoTypeEspace.cs" />
+    <Compile Include="Controleur\CoVille.cs" />
+    <Compile Include="Controleur\CoVue.cs" />
+    <Compile Include="Tools.cs" />
+    <Compile Include="Vue\DossierClient.cs" />
+    <Compile Include="Vue\DossierEspace.cs" />
+    <Compile Include="Vue\FormAjoutEspace.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vue\FormAjoutEspace.Designer.cs">
+      <DependentUpon>FormAjoutEspace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controleur\CoCodeElectronique.cs" />
+    <Compile Include="Controleur\CoTelephone.cs" />
+    <Compile Include="BaseDonnee\Database.cs" />
+    <Compile Include="DataSetIDM.cs">
+      <DependentUpon>DataSetIDM.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataSetIDM.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetIDM.xsd</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Controleur\CoClient.cs" />
+    <Compile Include="Vue\FormContrat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vue\FormContrat.Designer.cs">
+      <DependentUpon>FormContrat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vue\FormPaiement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vue\FormPaiement.Designer.cs">
+      <DependentUpon>FormPaiement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vue\FormPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vue\FormPrincipal.Designer.cs">
+      <DependentUpon>FormPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vue\FormAjoutClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vue\FormAjoutClient.Designer.cs">
+      <DependentUpon>FormAjoutClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vue\FormTaxes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vue\FormTaxes.Designer.cs">
+      <DependentUpon>FormTaxes.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Vue\FormAjoutEspace.resx">
+      <DependentUpon>FormAjoutEspace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vue\FormContrat.resx">
+      <DependentUpon>FormContrat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vue\FormPaiement.resx">
+      <DependentUpon>FormPaiement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vue\FormPrincipal.resx">
+      <DependentUpon>FormPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Vue\FormAjoutClient.resx">
+      <DependentUpon>FormAjoutClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vue\FormTaxes.resx">
+      <DependentUpon>FormTaxes.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="BaseDonnee\DataSetVille.xsc">
+      <DependentUpon>DataSetVille.xsd</DependentUpon>
+    </None>
+    <None Include="BaseDonnee\DataSetVille.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetVille.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="BaseDonnee\DataSetVille.xss">
+      <DependentUpon>DataSetVille.xsd</DependentUpon>
+    </None>
+    <EntityDeploy Include="BaseDonnee\Model_IDM.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model_IDM.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="BaseDonnee\Model_IDM.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model_IDM.edmx</DependentUpon>
+      <LastGenOutput>Model_IDM.Context.cs</LastGenOutput>
+    </None>
+    <None Include="BaseDonnee\Model_IDM.edmx.diagram">
+      <DependentUpon>Model_IDM.edmx</DependentUpon>
+    </None>
+    <None Include="BaseDonnee\Model_IDM.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model_IDM.edmx</DependentUpon>
+      <LastGenOutput>Model_IDM.cs</LastGenOutput>
+    </None>
+    <None Include="DataSetIDM.xsc">
+      <DependentUpon>DataSetIDM.xsd</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DataSetIDM.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetIDM.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DataSetIDM.xss">
+      <DependentUpon>DataSetIDM.xsd</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\idmlogopetit.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

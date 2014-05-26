@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="IDM_DATAModelStoreContainer" CdmEntityContainer="IDM_DATAEntities">
+    <EntitySetMapping Name="Client">
+      <EntityTypeMapping TypeName="IDM_DATAModel.Client">
+        <MappingFragment StoreEntitySet="Client">
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="Actif" ColumnName="Actif" />
+          <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+          <ScalarProperty Name="VilleId" ColumnName="VilleId" />
+          <ScalarProperty Name="DateEntree" ColumnName="DateEntree" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
+          <ScalarProperty Name="MethodePaiementId" ColumnName="MethodePaiementId" />
+          <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+          <ScalarProperty Name="Solde" ColumnName="Solde" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CodeElectronique">
+      <EntityTypeMapping TypeName="IDM_DATAModel.CodeElectronique">
+        <MappingFragment StoreEntitySet="CodeElectronique">
+          <ScalarProperty Name="CodeId" ColumnName="CodeId" />
+          <ScalarProperty Name="NoCode" ColumnName="NoCode" />
+          <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="SiteId" ColumnName="SiteId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contrat">
+      <EntityTypeMapping TypeName="IDM_DATAModel.Contrat">
+        <MappingFragment StoreEntitySet="Contrat">
+          <ScalarProperty Name="ContratId" ColumnName="ContratId" />
+          <ScalarProperty Name="EspaceId" ColumnName="EspaceId" />
+          <ScalarProperty Name="DateEntree" ColumnName="DateEntree" />
+          <ScalarProperty Name="DateSortie" ColumnName="DateSortie" />
+          <ScalarProperty Name="Prix" ColumnName="Prix" />
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Espace">
+      <EntityTypeMapping TypeName="IDM_DATAModel.Espace">
+        <MappingFragment StoreEntitySet="Espace">
+          <ScalarProperty Name="EspaceId" ColumnName="EspaceId" />
+          <ScalarProperty Name="TypeEspaceId" ColumnName="TypeEspaceId" />
+          <ScalarProperty Name="Disponible" ColumnName="Disponible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Local">
+      <EntityTypeMapping TypeName="IDM_DATAModel.Local">
+        <MappingFragment StoreEntitySet="Local">
+          <ScalarProperty Name="EspaceId" ColumnName="EspaceId" />
+          <ScalarProperty Name="NoLocal" ColumnName="NoLocal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MethodePaiement">
+      <EntityTypeMapping TypeName="IDM_DATAModel.MethodePaiement">
+        <MappingFragment StoreEntitySet="MethodePaiement">
+          <ScalarProperty Name="MethodePaiementId" ColumnName="MethodePaiementId" />
+          <ScalarProperty Name="MethodeDescription" ColumnName="MethodeDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Paiement">
+      <EntityTypeMapping TypeName="IDM_DATAModel.Paiement">
+        <MappingFragment StoreEntitySet="Paiement">
+          <ScalarProperty Name="PaiementId" ColumnName="PaiementId" />
+          <ScalarProperty Name="DatePaiement" ColumnName="DatePaiement" />
+          <ScalarProperty Name="MontantPaye" ColumnName="MontantPaye" />
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
+          <ScalarProperty Name="MethodePaiementId" ColumnName="MethodePaiementId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Site">
+      <EntityTypeMapping TypeName="IDM_DATAModel.Site">
+        <MappingFragment StoreEntitySet="Site">
+          <ScalarProperty Name="SiteId" ColumnName="SiteId" />
+          <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+          <ScalarProperty Name="Alias" ColumnName="Alias" />
+          <ScalarProperty Name="VilleId" ColumnName="VilleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stationnement">
+      <EntityTypeMapping TypeName="IDM_DATAModel.Stationnement">
+        <MappingFragment StoreEntitySet="Stationnement">
+          <ScalarProperty Name="EspaceId" ColumnName="EspaceId" />
+          <ScalarProperty Name="NoStationnement" ColumnName="NoStationnement" />
+          <ScalarProperty Name="TypeStationnement" ColumnName="TypeStationnement" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Taxe">
+      <EntityTypeMapping TypeName="IDM_DATAModel.Taxe">
+        <MappingFragment StoreEntitySet="Taxe">
+          <ScalarProperty Name="DateModification" ColumnName="DateModification" />
+          <ScalarProperty Name="Taux" ColumnName="Taux" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Telephone">
+      <EntityTypeMapping TypeName="IDM_DATAModel.Telephone">
+        <MappingFragment StoreEntitySet="Telephone">
+          <ScalarProperty Name="TelephoneId" ColumnName="TelephoneId" />
+          <ScalarProperty Name="NoTel" ColumnName="NoTel" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TypeEspace">
+      <EntityTypeMapping TypeName="IDM_DATAModel.TypeEspace">
+        <MappingFragment StoreEntitySet="TypeEspace">
+          <ScalarProperty Name="TypeEspaceId" ColumnName="TypeEspaceId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Prix" ColumnName="Prix" />
+          <ScalarProperty Name="SiteId" ColumnName="SiteId" />
+          <ScalarProperty Name="Largeur" ColumnName="Largeur" />
+          <ScalarProperty Name="Longueur" ColumnName="Longueur" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vehicule">
+      <EntityTypeMapping TypeName="IDM_DATAModel.Vehicule">
+        <MappingFragment StoreEntitySet="Vehicule">
+          <ScalarProperty Name="EspaceId" ColumnName="EspaceId" />
+          <ScalarProperty Name="Couleur" ColumnName="Couleur" />
+          <ScalarProperty Name="MarqueVehicule" ColumnName="MarqueVehicule" />
+          <ScalarProperty Name="PlaqueImmatriculation" ColumnName="PlaqueImmatriculation" />
+          <ScalarProperty Name="TypeVehicule" ColumnName="TypeVehicule" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ville">
+      <EntityTypeMapping TypeName="IDM_DATAModel.Ville">
+        <MappingFragment StoreEntitySet="Ville">
+          <ScalarProperty Name="VilleId" ColumnName="VilleId" />
+          <ScalarProperty Name="Ville1" ColumnName="Ville" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DossierLocalView">
+      <EntityTypeMapping TypeName="IDM_DATAModel.DossierLocalView">
+        <MappingFragment StoreEntitySet="DossierLocalView">
+          <ScalarProperty Name="EspaceId" ColumnName="EspaceId" />
+          <ScalarProperty Name="NoLocal" ColumnName="NoLocal" />
+          <ScalarProperty Name="Disponible" ColumnName="Disponible" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Largeur" ColumnName="Largeur" />
+          <ScalarProperty Name="Longueur" ColumnName="Longueur" />
+          <ScalarProperty Name="Prix" ColumnName="Prix" />
+          <ScalarProperty Name="Alias" ColumnName="Alias" />
+          <ScalarProperty Name="Ville" ColumnName="Ville" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DossierStationnementView">
+      <EntityTypeMapping TypeName="IDM_DATAModel.DossierStationnementView">
+        <MappingFragment StoreEntitySet="DossierStationnementView">
+          <ScalarProperty Name="EspaceId" ColumnName="EspaceId" />
+          <ScalarProperty Name="NoStationnement" ColumnName="NoStationnement" />
+          <ScalarProperty Name="Disponible" ColumnName="Disponible" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Largeur" ColumnName="Largeur" />
+          <ScalarProperty Name="Longueur" ColumnName="Longueur" />
+          <ScalarProperty Name="Prix" ColumnName="Prix" />
+          <ScalarProperty Name="Alias" ColumnName="Alias" />
+          <ScalarProperty Name="Ville" ColumnName="Ville" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ClientTelephone" TypeName="IDM_DATAModel.ClientTelephone" StoreEntitySet="ClientTelephone">
+      <EndProperty Name="Client">
+        <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+      </EndProperty>
+      <EndProperty Name="Telephone">
+        <ScalarProperty Name="TelephoneId" ColumnName="TelephoneId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
