@@ -14,21 +14,20 @@ namespace IDM2.Vue
 {
     public partial class FormPaiement : Form
     {
+        private Test _test;
         private Client _client;
-        private CoPaiement _controllerPaiement;
-        private CoTaxe _controllerTaxe;
         private bool _modification;
 
         public FormPaiement(Client client)
         {
             InitializeComponent();
+            _test = new Test();
             _client = client;
             lblClient.Text = client.Prenom + " " + client.Nom;
-            _controllerPaiement = new CoPaiement();
-            
-            _controllerTaxe = new CoTaxe();
-            txtTps.Text = (_controllerPaiement.TPS * 100).ToString() + " %";
-            txtTvq.Text = (_controllerPaiement.TVQ * 100).ToString() + " %";
+            lblMontantDue.Text += " " + Tools.FormatArgent(Controller.Loyer.MontantTotalDue(client));
+            txtTps.Text = (Controller.Paiement.TPS * 100).ToString() + " %";
+            txtTvq.Text = (Controller.Paiement.TVQ * 100).ToString() + " %";
+            dateTimePickerDatePaiement.Value = _test.Date;
 
             _modification = false;
             btnAppliquer.Enabled = false;
@@ -59,9 +58,9 @@ namespace IDM2.Vue
             try
             {
                 decimal montant = Convert.ToDecimal(txtMontantPaye.Text);
-                txtMontantAvTaxe.Text = _controllerPaiement.ObtenirMontantAvantTaxe(montant).ToString("0.00") + " $";
-                txtMontantTps.Text = _controllerPaiement.ObtenirMontantTps(montant).ToString("0.00") + " $";
-                txtMontantTvq.Text = _controllerPaiement.ObtenirMontantTvq(montant).ToString("0.00") + " $";
+                txtMontantAvTaxe.Text = Controller.Paiement.ObtenirMontantAvantTaxe(montant).ToString("0.00") + " $";
+                txtMontantTps.Text = Controller.Paiement.ObtenirMontantTps(montant).ToString("0.00") + " $";
+                txtMontantTvq.Text = Controller.Paiement.ObtenirMontantTvq(montant).ToString("0.00") + " $";
             }
             catch { }
         }
@@ -86,13 +85,10 @@ namespace IDM2.Vue
                     MessageBox.Show(ex.Message);
                 }
 
-                // à modifier!!!
-                DateTime date = new DateTime(1995, 09, 15);
-                paiement.DatePaiement = date;
-                //  paiement.Taxe.Add(_controllerTaxe.ObtenirTpsPlusRecente());
-                // paiement.Taxe.Add(_controllerTaxe.ObtenirTvqPlusRecente());
+                paiement.DatePaiement = dateTimePickerDatePaiement.Value;
+                paiement.Commentaire = txtCommentaire.Text;
 
-                _controllerPaiement.AjouterPaiement(paiement);
+                Controller.Paiement.EffectuerPaiement(paiement);
             }
 
             btnAppliquer.Enabled = false;
@@ -127,7 +123,7 @@ namespace IDM2.Vue
                     //  paiement.Taxe.Add(_controllerTaxe.ObtenirTpsPlusRecente());
                     // paiement.Taxe.Add(_controllerTaxe.ObtenirTvqPlusRecente());
 
-                    _controllerPaiement.AjouterPaiement(paiement);
+                    Controller.Paiement.EffectuerPaiement(paiement);
 
                     this.Close();
                 }
@@ -137,6 +133,14 @@ namespace IDM2.Vue
             }
             else
                 this.Close();
+        }
+
+        private void chkModifierDate_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkModifierDate.Checked)
+                dateTimePickerDatePaiement.Enabled = true;
+            else
+                dateTimePickerDatePaiement.Enabled = false;
         }
     }
 }

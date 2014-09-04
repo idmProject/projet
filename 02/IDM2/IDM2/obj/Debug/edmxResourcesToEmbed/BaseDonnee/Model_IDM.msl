@@ -28,6 +28,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Connexion">
+      <EntityTypeMapping TypeName="IDM_DATAModel.Connexion">
+        <MappingFragment StoreEntitySet="Connexion">
+          <ScalarProperty Name="LastConnexion" ColumnName="LastConnexion" />
+          <ScalarProperty Name="DernierLoyerCreer" ColumnName="DernierLoyerCreer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Contrat">
       <EntityTypeMapping TypeName="IDM_DATAModel.Contrat">
         <MappingFragment StoreEntitySet="Contrat">
@@ -54,6 +62,17 @@
         <MappingFragment StoreEntitySet="Local">
           <ScalarProperty Name="EspaceId" ColumnName="EspaceId" />
           <ScalarProperty Name="NoLocal" ColumnName="NoLocal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Loyer">
+      <EntityTypeMapping TypeName="IDM_DATAModel.Loyer">
+        <MappingFragment StoreEntitySet="Loyer">
+          <ScalarProperty Name="DateLoyer" ColumnName="DateLoyer" />
+          <ScalarProperty Name="ContratId" ColumnName="ContratId" />
+          <ScalarProperty Name="MontantLoyer" ColumnName="MontantLoyer" />
+          <ScalarProperty Name="MontantPayer" ColumnName="MontantPayer" />
+          <ScalarProperty Name="EstPayer" ColumnName="EstPayer" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -125,6 +144,7 @@
           <ScalarProperty Name="SiteId" ColumnName="SiteId" />
           <ScalarProperty Name="Largeur" ColumnName="Largeur" />
           <ScalarProperty Name="Longueur" ColumnName="Longueur" />
+          <ScalarProperty Name="EstLocal" ColumnName="EstLocal" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -147,9 +167,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="DossierLocalView">
-      <EntityTypeMapping TypeName="IDM_DATAModel.DossierLocalView">
-        <MappingFragment StoreEntitySet="DossierLocalView">
+    <EntitySetMapping Name="DossiersLocalView">
+      <EntityTypeMapping TypeName="IDM_DATAModel.DossiersLocalView">
+        <MappingFragment StoreEntitySet="DossiersLocalView">
           <ScalarProperty Name="EspaceId" ColumnName="EspaceId" />
           <ScalarProperty Name="NoLocal" ColumnName="NoLocal" />
           <ScalarProperty Name="Disponible" ColumnName="Disponible" />
@@ -183,6 +203,15 @@
       </EndProperty>
       <EndProperty Name="Telephone">
         <ScalarProperty Name="TelephoneId" ColumnName="TelephoneId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="LoyerPaiement" TypeName="IDM_DATAModel.LoyerPaiement" StoreEntitySet="LoyerPaiement">
+      <EndProperty Name="Loyer">
+        <ScalarProperty Name="DateLoyer" ColumnName="DateLoyer" />
+        <ScalarProperty Name="ContratId" ColumnName="ContratId" />
+      </EndProperty>
+      <EndProperty Name="Paiement">
+        <ScalarProperty Name="PaiementId" ColumnName="PaiementId" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

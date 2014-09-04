@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBoxAjoutClient = new System.Windows.Forms.GroupBox();
+            this.chkBoxCodePorte = new System.Windows.Forms.CheckBox();
+            this.chkBoxCodeBarriere = new System.Windows.Forms.CheckBox();
             this.btnOk = new System.Windows.Forms.Button();
             this.btnAnnuler = new System.Windows.Forms.Button();
             this.dateTimePickerEntree = new System.Windows.Forms.DateTimePicker();
@@ -38,6 +40,7 @@
             this.villeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataSetVilleBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataSetVille = new IDM2.BaseDonnee.DataSetVille();
+            this.villeBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.gbTelephone = new System.Windows.Forms.GroupBox();
             this.btnMoins = new System.Windows.Forms.Button();
             this.btnPlusTel = new System.Windows.Forms.Button();
@@ -46,14 +49,12 @@
             this.cmdMethodePaiement = new System.Windows.Forms.ComboBox();
             this.methodePaiementBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataSetIDM = new IDM2.DataSetIDM();
-            this.lblNewCustDoorCode = new System.Windows.Forms.Label();
             this.txtCodePorte = new System.Windows.Forms.TextBox();
             this.lblNewCustComments = new System.Windows.Forms.Label();
             this.txtCommentaire = new System.Windows.Forms.RichTextBox();
             this.btnAppliquer = new System.Windows.Forms.Button();
             this.chkBoxActif = new System.Windows.Forms.CheckBox();
             this.lblNewCustEffectDate = new System.Windows.Forms.Label();
-            this.lblNewCustGateCode = new System.Windows.Forms.Label();
             this.lblNewCustAddress = new System.Windows.Forms.Label();
             this.lblNewCustLastName = new System.Windows.Forms.Label();
             this.lblNewCustFirstName = new System.Windows.Forms.Label();
@@ -64,20 +65,21 @@
             this.methodePaiementTableAdapter = new IDM2.DataSetIDMTableAdapters.MethodePaiementTableAdapter();
             this.porteTableAdapter = new IDM2.DataSetIDMTableAdapters.PorteTableAdapter();
             this.villeTableAdapter = new IDM2.BaseDonnee.DataSetVilleTableAdapters.VilleTableAdapter();
-            this.villeBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.groupBoxAjoutClient.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.villeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetVilleBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetVille)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.villeBindingSource1)).BeginInit();
             this.gbTelephone.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.methodePaiementBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetIDM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.porteBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.villeBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxAjoutClient
             // 
+            this.groupBoxAjoutClient.Controls.Add(this.chkBoxCodePorte);
+            this.groupBoxAjoutClient.Controls.Add(this.chkBoxCodeBarriere);
             this.groupBoxAjoutClient.Controls.Add(this.btnOk);
             this.groupBoxAjoutClient.Controls.Add(this.btnAnnuler);
             this.groupBoxAjoutClient.Controls.Add(this.dateTimePickerEntree);
@@ -87,14 +89,12 @@
             this.groupBoxAjoutClient.Controls.Add(this.txtAdresse);
             this.groupBoxAjoutClient.Controls.Add(this.lblNewCustPayementMethod);
             this.groupBoxAjoutClient.Controls.Add(this.cmdMethodePaiement);
-            this.groupBoxAjoutClient.Controls.Add(this.lblNewCustDoorCode);
             this.groupBoxAjoutClient.Controls.Add(this.txtCodePorte);
             this.groupBoxAjoutClient.Controls.Add(this.lblNewCustComments);
             this.groupBoxAjoutClient.Controls.Add(this.txtCommentaire);
             this.groupBoxAjoutClient.Controls.Add(this.btnAppliquer);
             this.groupBoxAjoutClient.Controls.Add(this.chkBoxActif);
             this.groupBoxAjoutClient.Controls.Add(this.lblNewCustEffectDate);
-            this.groupBoxAjoutClient.Controls.Add(this.lblNewCustGateCode);
             this.groupBoxAjoutClient.Controls.Add(this.lblNewCustAddress);
             this.groupBoxAjoutClient.Controls.Add(this.lblNewCustLastName);
             this.groupBoxAjoutClient.Controls.Add(this.lblNewCustFirstName);
@@ -106,6 +106,28 @@
             this.groupBoxAjoutClient.Size = new System.Drawing.Size(979, 490);
             this.groupBoxAjoutClient.TabIndex = 4;
             this.groupBoxAjoutClient.TabStop = false;
+            // 
+            // chkBoxCodePorte
+            // 
+            this.chkBoxCodePorte.AutoSize = true;
+            this.chkBoxCodePorte.Location = new System.Drawing.Point(266, 263);
+            this.chkBoxCodePorte.Name = "chkBoxCodePorte";
+            this.chkBoxCodePorte.Size = new System.Drawing.Size(94, 17);
+            this.chkBoxCodePorte.TabIndex = 7;
+            this.chkBoxCodePorte.Text = "Code de Porte";
+            this.chkBoxCodePorte.UseVisualStyleBackColor = true;
+            this.chkBoxCodePorte.CheckedChanged += new System.EventHandler(this.chkBoxCodePorte_CheckedChanged);
+            // 
+            // chkBoxCodeBarriere
+            // 
+            this.chkBoxCodeBarriere.AutoSize = true;
+            this.chkBoxCodeBarriere.Location = new System.Drawing.Point(266, 237);
+            this.chkBoxCodeBarriere.Name = "chkBoxCodeBarriere";
+            this.chkBoxCodeBarriere.Size = new System.Drawing.Size(105, 17);
+            this.chkBoxCodeBarriere.TabIndex = 5;
+            this.chkBoxCodeBarriere.Text = "Code de Barriere";
+            this.chkBoxCodeBarriere.UseVisualStyleBackColor = true;
+            this.chkBoxCodeBarriere.CheckedChanged += new System.EventHandler(this.chkBoxCodeBarriere_CheckedChanged);
             // 
             // btnOk
             // 
@@ -122,7 +144,7 @@
             this.btnAnnuler.Location = new System.Drawing.Point(792, 457);
             this.btnAnnuler.Name = "btnAnnuler";
             this.btnAnnuler.Size = new System.Drawing.Size(85, 23);
-            this.btnAnnuler.TabIndex = 47;
+            this.btnAnnuler.TabIndex = 49;
             this.btnAnnuler.Text = "Annuler";
             this.btnAnnuler.UseVisualStyleBackColor = true;
             this.btnAnnuler.Click += new System.EventHandler(this.btnAnnuler_Click);
@@ -132,7 +154,7 @@
             this.dateTimePickerEntree.Location = new System.Drawing.Point(47, 303);
             this.dateTimePickerEntree.Name = "dateTimePickerEntree";
             this.dateTimePickerEntree.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePickerEntree.TabIndex = 46;
+            this.dateTimePickerEntree.TabIndex = 9;
             // 
             // lblNewCustVille
             // 
@@ -155,7 +177,7 @@
             this.cmbVille.Location = new System.Drawing.Point(82, 148);
             this.cmbVille.Name = "cmbVille";
             this.cmbVille.Size = new System.Drawing.Size(165, 21);
-            this.cmbVille.TabIndex = 44;
+            this.cmbVille.TabIndex = 3;
             this.cmbVille.ValueMember = "VilleId";
             // 
             // villeBindingSource
@@ -172,6 +194,11 @@
             // 
             this.dataSetVille.DataSetName = "DataSetVille";
             this.dataSetVille.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // villeBindingSource1
+            // 
+            this.villeBindingSource1.DataMember = "Ville";
+            this.villeBindingSource1.DataSource = this.dataSetVilleBindingSource;
             // 
             // gbTelephone
             // 
@@ -208,7 +235,7 @@
             this.txtAdresse.Location = new System.Drawing.Point(82, 89);
             this.txtAdresse.Name = "txtAdresse";
             this.txtAdresse.Size = new System.Drawing.Size(165, 53);
-            this.txtAdresse.TabIndex = 42;
+            this.txtAdresse.TabIndex = 2;
             this.txtAdresse.Text = "";
             // 
             // lblNewCustPayementMethod
@@ -228,7 +255,7 @@
             this.cmdMethodePaiement.Location = new System.Drawing.Point(82, 190);
             this.cmdMethodePaiement.Name = "cmdMethodePaiement";
             this.cmdMethodePaiement.Size = new System.Drawing.Size(165, 21);
-            this.cmdMethodePaiement.TabIndex = 7;
+            this.cmdMethodePaiement.TabIndex = 4;
             this.cmdMethodePaiement.ValueMember = "MethodePaiement";
             // 
             // methodePaiementBindingSource
@@ -241,22 +268,14 @@
             this.dataSetIDM.DataSetName = "DataSetIDM";
             this.dataSetIDM.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // lblNewCustDoorCode
-            // 
-            this.lblNewCustDoorCode.AutoSize = true;
-            this.lblNewCustDoorCode.Location = new System.Drawing.Point(263, 264);
-            this.lblNewCustDoorCode.Name = "lblNewCustDoorCode";
-            this.lblNewCustDoorCode.Size = new System.Drawing.Size(75, 13);
-            this.lblNewCustDoorCode.TabIndex = 27;
-            this.lblNewCustDoorCode.Text = "Code de Porte";
-            // 
             // txtCodePorte
             // 
             this.txtCodePorte.AccessibleName = "CodePorte";
+            this.txtCodePorte.Enabled = false;
             this.txtCodePorte.Location = new System.Drawing.Point(160, 261);
             this.txtCodePorte.Name = "txtCodePorte";
             this.txtCodePorte.Size = new System.Drawing.Size(87, 20);
-            this.txtCodePorte.TabIndex = 9;
+            this.txtCodePorte.TabIndex = 8;
             // 
             // lblNewCustComments
             // 
@@ -273,7 +292,7 @@
             this.txtCommentaire.Location = new System.Drawing.Point(20, 348);
             this.txtCommentaire.Name = "txtCommentaire";
             this.txtCommentaire.Size = new System.Drawing.Size(227, 107);
-            this.txtCommentaire.TabIndex = 13;
+            this.txtCommentaire.TabIndex = 10;
             this.txtCommentaire.Text = "";
             // 
             // btnAppliquer
@@ -281,7 +300,7 @@
             this.btnAppliquer.Location = new System.Drawing.Point(883, 457);
             this.btnAppliquer.Name = "btnAppliquer";
             this.btnAppliquer.Size = new System.Drawing.Size(85, 23);
-            this.btnAppliquer.TabIndex = 16;
+            this.btnAppliquer.TabIndex = 50;
             this.btnAppliquer.Text = "Appliquer";
             this.btnAppliquer.UseVisualStyleBackColor = true;
             this.btnAppliquer.Click += new System.EventHandler(this.btnAppliquer_Click);
@@ -290,12 +309,14 @@
             // 
             this.chkBoxActif.AccessibleName = "Actif";
             this.chkBoxActif.AutoSize = true;
+            this.chkBoxActif.BackColor = System.Drawing.Color.PaleGreen;
             this.chkBoxActif.Location = new System.Drawing.Point(172, 461);
             this.chkBoxActif.Name = "chkBoxActif";
             this.chkBoxActif.Size = new System.Drawing.Size(75, 17);
-            this.chkBoxActif.TabIndex = 15;
+            this.chkBoxActif.TabIndex = 11;
             this.chkBoxActif.Text = "Client actif";
-            this.chkBoxActif.UseVisualStyleBackColor = true;
+            this.chkBoxActif.UseVisualStyleBackColor = false;
+            this.chkBoxActif.CheckedChanged += new System.EventHandler(this.chkBoxActif_CheckedChanged);
             // 
             // lblNewCustEffectDate
             // 
@@ -305,15 +326,6 @@
             this.lblNewCustEffectDate.Size = new System.Drawing.Size(71, 13);
             this.lblNewCustEffectDate.TabIndex = 15;
             this.lblNewCustEffectDate.Text = "Date d\'entree";
-            // 
-            // lblNewCustGateCode
-            // 
-            this.lblNewCustGateCode.AutoSize = true;
-            this.lblNewCustGateCode.Location = new System.Drawing.Point(263, 238);
-            this.lblNewCustGateCode.Name = "lblNewCustGateCode";
-            this.lblNewCustGateCode.Size = new System.Drawing.Size(86, 13);
-            this.lblNewCustGateCode.TabIndex = 12;
-            this.lblNewCustGateCode.Text = "Code de Barriere";
             // 
             // lblNewCustAddress
             // 
@@ -345,10 +357,11 @@
             // txtCodeBarriere
             // 
             this.txtCodeBarriere.AccessibleName = "CodeBarriere";
+            this.txtCodeBarriere.Enabled = false;
             this.txtCodeBarriere.Location = new System.Drawing.Point(160, 235);
             this.txtCodeBarriere.Name = "txtCodeBarriere";
             this.txtCodeBarriere.Size = new System.Drawing.Size(87, 20);
-            this.txtCodeBarriere.TabIndex = 8;
+            this.txtCodeBarriere.TabIndex = 6;
             // 
             // txtNom
             // 
@@ -384,11 +397,6 @@
             // 
             this.villeTableAdapter.ClearBeforeFill = true;
             // 
-            // villeBindingSource1
-            // 
-            this.villeBindingSource1.DataMember = "Ville";
-            this.villeBindingSource1.DataSource = this.dataSetVilleBindingSource;
-            // 
             // AjoutClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -403,11 +411,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.villeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetVilleBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetVille)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.villeBindingSource1)).EndInit();
             this.gbTelephone.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.methodePaiementBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetIDM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.porteBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.villeBindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -420,14 +428,12 @@
         private System.Windows.Forms.Button btnAppliquer;
         private System.Windows.Forms.CheckBox chkBoxActif;
         private System.Windows.Forms.Label lblNewCustEffectDate;
-        private System.Windows.Forms.Label lblNewCustGateCode;
         private System.Windows.Forms.Label lblNewCustAddress;
         private System.Windows.Forms.Label lblNewCustLastName;
         private System.Windows.Forms.Label lblNewCustFirstName;
         private System.Windows.Forms.TextBox txtCodeBarriere;
         private System.Windows.Forms.TextBox txtNom;
         private System.Windows.Forms.TextBox txtPrenom;
-        private System.Windows.Forms.Label lblNewCustDoorCode;
         private System.Windows.Forms.TextBox txtCodePorte;
         private System.Windows.Forms.Label lblNewCustPayementMethod;
         private System.Windows.Forms.ComboBox cmdMethodePaiement;
@@ -450,5 +456,7 @@
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Button btnAnnuler;
         private System.Windows.Forms.Button btnMoins;
+        private System.Windows.Forms.CheckBox chkBoxCodePorte;
+        private System.Windows.Forms.CheckBox chkBoxCodeBarriere;
     }
 }

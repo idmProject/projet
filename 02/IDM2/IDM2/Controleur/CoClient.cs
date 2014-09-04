@@ -8,21 +8,20 @@ using IDM2.Controleur;
 
 namespace IDM2
 {
-    public class CoClient
+    public class CoClient : Co
     {
-        private IDM_DATAEntities _bd;
         private CoTelephone _controllerTelephone;
 
         public CoClient()
+            : base()
         {
-            _bd = Contexte.Bd;
             _controllerTelephone = new CoTelephone();
         }
 
         public Client AjouterClient(Client client)
         {
             client.Ville = _bd.Ville.Find(client.VilleId);
-           
+
 
 
             _bd.Client.Add(client);
@@ -31,24 +30,26 @@ namespace IDM2
             return _bd.Client.Find(client.ClientId);
         }
 
-        public void ModifierClient(Client client, Client newClient)
+        public Client ModifierClient(Client client, Client newClient)
         {
-
+            client = _bd.Client.Find(client.ClientId);
             client.Actif = newClient.Actif;
             client.Adresse = newClient.Adresse;
-            //client.CodeElect = newMClient.CodeElectronique;
-            //client.DateEntree = (DateTime)newMClient.DateEntree;
             client.Nom = newClient.Nom;
             client.Prenom = newClient.Prenom;
-            //client.VilleId = (int)newMClient.VilleId;
+            client.Ville = _bd.Ville.Find(newClient.VilleId);
+            client.Commentaire = newClient.Commentaire;
+            client.DateEntree = newClient.DateEntree;
 
             _bd.SaveChanges();
+
+            return client;
         }
 
 
         public Client[] RechercherClientNom(string nom)
         {
-            return  _bd.Client.Where(c => c.Nom == nom || c.Prenom == nom).ToArray();
+            return _bd.Client.Where(c => c.Nom == nom || c.Prenom == nom).ToArray();
         }
 
 
@@ -67,6 +68,12 @@ namespace IDM2
             return clients.ToArray();
         }
 
+        public Client RechercherClientParContrat(int contratId)
+        {
+            Contrat contrat = _bd.Contrat.Find(contratId);
+            return _bd.Client.Find(contrat.ClientId);
+        }
+
         public Client[] ObtenirTousLesClients()
         {
             return _bd.Client.ToArray();
@@ -83,6 +90,12 @@ namespace IDM2
             _bd.Client.RemoveRange(client);
             _bd.SaveChanges();
         }
-       
+
+        public bool EstAssocierContrat(Client client)
+        {
+            return (_bd.Contrat.Count(c => c.ClientId == client.ClientId) >= 1);
+        }
+
+
     }
 }

@@ -4,9 +4,12 @@
     <EntitySet Name="Client" EntityType="IDM_DATAModel.Store.Client" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ClientTelephone" EntityType="IDM_DATAModel.Store.ClientTelephone" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="CodeElectronique" EntityType="IDM_DATAModel.Store.CodeElectronique" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Connexion" EntityType="IDM_DATAModel.Store.Connexion" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Contrat" EntityType="IDM_DATAModel.Store.Contrat" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Espace" EntityType="IDM_DATAModel.Store.Espace" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Local" EntityType="IDM_DATAModel.Store.Local" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Loyer" EntityType="IDM_DATAModel.Store.Loyer" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LoyerPaiement" EntityType="IDM_DATAModel.Store.LoyerPaiement" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="MethodePaiement" EntityType="IDM_DATAModel.Store.MethodePaiement" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Paiement" EntityType="IDM_DATAModel.Store.Paiement" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Site" EntityType="IDM_DATAModel.Store.Site" store:Type="Tables" Schema="dbo" />
@@ -16,18 +19,18 @@
     <EntitySet Name="TypeEspace" EntityType="IDM_DATAModel.Store.TypeEspace" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Vehicule" EntityType="IDM_DATAModel.Store.Vehicule" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Ville" EntityType="IDM_DATAModel.Store.Ville" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="DossierLocalView" EntityType="IDM_DATAModel.Store.DossierLocalView" store:Type="Views" store:Schema="dbo" store:Name="DossierLocalView">
+    <EntitySet Name="DossiersLocalView" EntityType="IDM_DATAModel.Store.DossiersLocalView" store:Type="Views" store:Schema="dbo" store:Name="DossiersLocalView">
       <DefiningQuery>SELECT 
-      [DossierLocalView].[EspaceId] AS [EspaceId], 
-      [DossierLocalView].[NoLocal] AS [NoLocal], 
-      [DossierLocalView].[Disponible] AS [Disponible], 
-      [DossierLocalView].[Description] AS [Description], 
-      [DossierLocalView].[Largeur] AS [Largeur], 
-      [DossierLocalView].[Longueur] AS [Longueur], 
-      [DossierLocalView].[Prix] AS [Prix], 
-      [DossierLocalView].[Alias] AS [Alias], 
-      [DossierLocalView].[Ville] AS [Ville]
-      FROM [dbo].[DossierLocalView] AS [DossierLocalView]</DefiningQuery>
+      [DossiersLocalView].[EspaceId] AS [EspaceId], 
+      [DossiersLocalView].[NoLocal] AS [NoLocal], 
+      [DossiersLocalView].[Disponible] AS [Disponible], 
+      [DossiersLocalView].[Description] AS [Description], 
+      [DossiersLocalView].[Largeur] AS [Largeur], 
+      [DossiersLocalView].[Longueur] AS [Longueur], 
+      [DossiersLocalView].[Prix] AS [Prix], 
+      [DossiersLocalView].[Alias] AS [Alias], 
+      [DossiersLocalView].[Ville] AS [Ville]
+      FROM [dbo].[DossiersLocalView] AS [DossiersLocalView]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="DossierStationnementView" EntityType="IDM_DATAModel.Store.DossierStationnementView" store:Type="Views" store:Schema="dbo" store:Name="DossierStationnementView">
       <DefiningQuery>SELECT 
@@ -86,6 +89,18 @@
       <End Role="Espace" EntitySet="Espace" />
       <End Role="Local" EntitySet="Local" />
     </AssociationSet>
+    <AssociationSet Name="Loyer_Contrat_FK" Association="IDM_DATAModel.Store.Loyer_Contrat_FK">
+      <End Role="Contrat" EntitySet="Contrat" />
+      <End Role="Loyer" EntitySet="Loyer" />
+    </AssociationSet>
+    <AssociationSet Name="LoyerPaiement_Loyer_DateLoyer_FK" Association="IDM_DATAModel.Store.LoyerPaiement_Loyer_DateLoyer_FK">
+      <End Role="Loyer" EntitySet="Loyer" />
+      <End Role="LoyerPaiement" EntitySet="LoyerPaiement" />
+    </AssociationSet>
+    <AssociationSet Name="LoyerPaiement_Paiemen_FK" Association="IDM_DATAModel.Store.LoyerPaiement_Paiemen_FK">
+      <End Role="Paiement" EntitySet="Paiement" />
+      <End Role="LoyerPaiement" EntitySet="LoyerPaiement" />
+    </AssociationSet>
     <AssociationSet Name="Paiement_Client_FK" Association="IDM_DATAModel.Store.Paiement_Client_FK">
       <End Role="Client" EntitySet="Client" />
       <End Role="Paiement" EntitySet="Paiement" />
@@ -136,6 +151,13 @@
     <Property Name="ClientId" Type="int" />
     <Property Name="SiteId" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="Connexion">
+    <Key>
+      <PropertyRef Name="LastConnexion" />
+    </Key>
+    <Property Name="LastConnexion" Type="datetime" Nullable="false" />
+    <Property Name="DernierLoyerCreer" Type="bit" Nullable="false" />
+  </EntityType>
   <EntityType Name="Contrat">
     <Key>
       <PropertyRef Name="ContratId" />
@@ -161,6 +183,27 @@
     </Key>
     <Property Name="EspaceId" Type="int" Nullable="false" />
     <Property Name="NoLocal" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Loyer">
+    <Key>
+      <PropertyRef Name="DateLoyer" />
+      <PropertyRef Name="ContratId" />
+    </Key>
+    <Property Name="DateLoyer" Type="date" Nullable="false" />
+    <Property Name="ContratId" Type="int" Nullable="false" />
+    <Property Name="MontantLoyer" Type="money" Nullable="false" />
+    <Property Name="MontantPayer" Type="money" Nullable="false" />
+    <Property Name="EstPayer" Type="bit" />
+  </EntityType>
+  <EntityType Name="LoyerPaiement">
+    <Key>
+      <PropertyRef Name="DateLoyer" />
+      <PropertyRef Name="ContratId" />
+      <PropertyRef Name="PaiementId" />
+    </Key>
+    <Property Name="DateLoyer" Type="date" Nullable="false" />
+    <Property Name="ContratId" Type="int" Nullable="false" />
+    <Property Name="PaiementId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="MethodePaiement">
     <Key>
@@ -226,6 +269,7 @@
     <Property Name="SiteId" Type="int" Nullable="false" />
     <Property Name="Largeur" Type="int" />
     <Property Name="Longueur" Type="int" />
+    <Property Name="EstLocal" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Vehicule">
     <Key>
@@ -245,9 +289,9 @@
     <Property Name="Ville" Type="nvarchar" Nullable="false" MaxLength="50" />
   </EntityType>
   <!--Erreurs détectées durant la génération :
-      Avertissement 6002: La table/vue « D:\IDM PROJECT\DATABASE\IDM_DATA.MDF.dbo.DossierLocalView » n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.
+      Avertissement 6002: La table/vue « D:\IDM PROJECT\DATABASE\IDM_DATA.MDF.dbo.DossiersLocalView » n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.
       -->
-  <EntityType Name="DossierLocalView">
+  <EntityType Name="DossiersLocalView">
     <Key>
       <PropertyRef Name="EspaceId" />
     </Key>
@@ -415,6 +459,44 @@
       </Principal>
       <Dependent Role="Local">
         <PropertyRef Name="EspaceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Loyer_Contrat_FK">
+    <End Role="Contrat" Type="IDM_DATAModel.Store.Contrat" Multiplicity="1" />
+    <End Role="Loyer" Type="IDM_DATAModel.Store.Loyer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contrat">
+        <PropertyRef Name="ContratId" />
+      </Principal>
+      <Dependent Role="Loyer">
+        <PropertyRef Name="ContratId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LoyerPaiement_Loyer_DateLoyer_FK">
+    <End Role="Loyer" Type="IDM_DATAModel.Store.Loyer" Multiplicity="1" />
+    <End Role="LoyerPaiement" Type="IDM_DATAModel.Store.LoyerPaiement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Loyer">
+        <PropertyRef Name="DateLoyer" />
+        <PropertyRef Name="ContratId" />
+      </Principal>
+      <Dependent Role="LoyerPaiement">
+        <PropertyRef Name="DateLoyer" />
+        <PropertyRef Name="ContratId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LoyerPaiement_Paiemen_FK">
+    <End Role="Paiement" Type="IDM_DATAModel.Store.Paiement" Multiplicity="1" />
+    <End Role="LoyerPaiement" Type="IDM_DATAModel.Store.LoyerPaiement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Paiement">
+        <PropertyRef Name="PaiementId" />
+      </Principal>
+      <Dependent Role="LoyerPaiement">
+        <PropertyRef Name="PaiementId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -3,9 +3,11 @@
   <EntityContainer Name="IDM_DATAEntities" p1:LazyLoadingEnabled="true">
     <EntitySet Name="Client" EntityType="IDM_DATAModel.Client" />
     <EntitySet Name="CodeElectronique" EntityType="IDM_DATAModel.CodeElectronique" />
+    <EntitySet Name="Connexion" EntityType="IDM_DATAModel.Connexion" />
     <EntitySet Name="Contrat" EntityType="IDM_DATAModel.Contrat" />
     <EntitySet Name="Espace" EntityType="IDM_DATAModel.Espace" />
     <EntitySet Name="Local" EntityType="IDM_DATAModel.Local" />
+    <EntitySet Name="Loyer" EntityType="IDM_DATAModel.Loyer" />
     <EntitySet Name="MethodePaiement" EntityType="IDM_DATAModel.MethodePaiement" />
     <EntitySet Name="Paiement" EntityType="IDM_DATAModel.Paiement" />
     <EntitySet Name="Site" EntityType="IDM_DATAModel.Site" />
@@ -15,7 +17,7 @@
     <EntitySet Name="TypeEspace" EntityType="IDM_DATAModel.TypeEspace" />
     <EntitySet Name="Vehicule" EntityType="IDM_DATAModel.Vehicule" />
     <EntitySet Name="Ville" EntityType="IDM_DATAModel.Ville" />
-    <EntitySet Name="DossierLocalView" EntityType="IDM_DATAModel.DossierLocalView" />
+    <EntitySet Name="DossiersLocalView" EntityType="IDM_DATAModel.DossiersLocalView" />
     <EntitySet Name="DossierStationnementView" EntityType="IDM_DATAModel.DossierStationnementView" />
     <AssociationSet Name="Client_Methode_FK" Association="IDM_DATAModel.Client_Methode_FK">
       <End Role="MethodePaiement" EntitySet="MethodePaiement" />
@@ -45,6 +47,10 @@
       <End Role="Espace" EntitySet="Espace" />
       <End Role="Contrat" EntitySet="Contrat" />
     </AssociationSet>
+    <AssociationSet Name="Loyer_Contrat_FK" Association="IDM_DATAModel.Loyer_Contrat_FK">
+      <End Role="Contrat" EntitySet="Contrat" />
+      <End Role="Loyer" EntitySet="Loyer" />
+    </AssociationSet>
     <AssociationSet Name="Espace_Stationnement_FK" Association="IDM_DATAModel.Espace_Stationnement_FK">
       <End Role="Espace" EntitySet="Espace" />
       <End Role="Stationnement" EntitySet="Stationnement" />
@@ -72,6 +78,10 @@
     <AssociationSet Name="ClientTelephone" Association="IDM_DATAModel.ClientTelephone">
       <End Role="Client" EntitySet="Client" />
       <End Role="Telephone" EntitySet="Telephone" />
+    </AssociationSet>
+    <AssociationSet Name="LoyerPaiement" Association="IDM_DATAModel.LoyerPaiement">
+      <End Role="Loyer" EntitySet="Loyer" />
+      <End Role="Paiement" EntitySet="Paiement" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Client">
@@ -107,6 +117,13 @@
     <NavigationProperty Name="Client" Relationship="IDM_DATAModel.CodeElectronique_Client_FK" FromRole="CodeElectronique" ToRole="Client" />
     <NavigationProperty Name="Site" Relationship="IDM_DATAModel.CodeElectronique_Site_FK" FromRole="CodeElectronique" ToRole="Site" />
   </EntityType>
+  <EntityType Name="Connexion">
+    <Key>
+      <PropertyRef Name="LastConnexion" />
+    </Key>
+    <Property Name="LastConnexion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DernierLoyerCreer" Type="Boolean" Nullable="false" />
+  </EntityType>
   <EntityType Name="Contrat">
     <Key>
       <PropertyRef Name="ContratId" />
@@ -119,6 +136,7 @@
     <Property Name="ClientId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Client" Relationship="IDM_DATAModel.Contrat_Client_FK" FromRole="Contrat" ToRole="Client" />
     <NavigationProperty Name="Espace" Relationship="IDM_DATAModel.Contrat_Espace_FK" FromRole="Contrat" ToRole="Espace" />
+    <NavigationProperty Name="Loyer" Relationship="IDM_DATAModel.Loyer_Contrat_FK" FromRole="Contrat" ToRole="Loyer" />
   </EntityType>
   <EntityType Name="Espace">
     <Key>
@@ -140,6 +158,19 @@
     <Property Name="NoLocal" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Espace" Relationship="IDM_DATAModel.Local_Espace_FK" FromRole="Local" ToRole="Espace" />
   </EntityType>
+  <EntityType Name="Loyer">
+    <Key>
+      <PropertyRef Name="DateLoyer" />
+      <PropertyRef Name="ContratId" />
+    </Key>
+    <Property Name="DateLoyer" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ContratId" Type="Int32" Nullable="false" />
+    <Property Name="MontantLoyer" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="MontantPayer" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="EstPayer" Type="Boolean" />
+    <NavigationProperty Name="Contrat" Relationship="IDM_DATAModel.Loyer_Contrat_FK" FromRole="Loyer" ToRole="Contrat" />
+    <NavigationProperty Name="Paiement" Relationship="IDM_DATAModel.LoyerPaiement" FromRole="Loyer" ToRole="Paiement" />
+  </EntityType>
   <EntityType Name="MethodePaiement">
     <Key>
       <PropertyRef Name="MethodePaiementId" />
@@ -159,6 +190,7 @@
     <Property Name="Commentaire" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
     <Property Name="MethodePaiementId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Client" Relationship="IDM_DATAModel.Paiement_Client_FK" FromRole="Paiement" ToRole="Client" />
+    <NavigationProperty Name="Loyer" Relationship="IDM_DATAModel.LoyerPaiement" FromRole="Paiement" ToRole="Loyer" />
   </EntityType>
   <EntityType Name="Site">
     <Key>
@@ -212,6 +244,7 @@
     <Property Name="SiteId" Type="Int32" Nullable="false" />
     <Property Name="Largeur" Type="Int32" />
     <Property Name="Longueur" Type="Int32" />
+    <Property Name="EstLocal" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Espace" Relationship="IDM_DATAModel.Espace_TypeEspace_FK" FromRole="TypeEspace" ToRole="Espace" />
     <NavigationProperty Name="Site" Relationship="IDM_DATAModel.TypeEspace_Site_FK" FromRole="TypeEspace" ToRole="Site" />
   </EntityType>
@@ -235,7 +268,7 @@
     <NavigationProperty Name="Client" Relationship="IDM_DATAModel.Client_Ville_FK" FromRole="Ville" ToRole="Client" />
     <NavigationProperty Name="Site" Relationship="IDM_DATAModel.Site_Vill_FK" FromRole="Ville" ToRole="Site" />
   </EntityType>
-  <EntityType Name="DossierLocalView">
+  <EntityType Name="DossiersLocalView">
     <Key>
       <PropertyRef Name="EspaceId" />
     </Key>
@@ -349,6 +382,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="Loyer_Contrat_FK">
+    <End Role="Contrat" Type="IDM_DATAModel.Contrat" Multiplicity="1" />
+    <End Role="Loyer" Type="IDM_DATAModel.Loyer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contrat">
+        <PropertyRef Name="ContratId" />
+      </Principal>
+      <Dependent Role="Loyer">
+        <PropertyRef Name="ContratId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="Espace_Stationnement_FK">
     <End Role="Espace" Type="IDM_DATAModel.Espace" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -434,5 +479,9 @@
   <Association Name="ClientTelephone">
     <End Role="Client" Type="IDM_DATAModel.Client" Multiplicity="*" />
     <End Role="Telephone" Type="IDM_DATAModel.Telephone" Multiplicity="*" />
+  </Association>
+  <Association Name="LoyerPaiement">
+    <End Role="Loyer" Type="IDM_DATAModel.Loyer" Multiplicity="*" />
+    <End Role="Paiement" Type="IDM_DATAModel.Paiement" Multiplicity="*" />
   </Association>
 </Schema>

@@ -12,6 +12,21 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <PublishUrl>publier\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -59,15 +74,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseDonnee\Client.cs">
-      <DependentUpon>Model_IDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BaseDonnee\CodeElectronique.cs">
-      <DependentUpon>Model_IDM.tt</DependentUpon>
-    </Compile>
     <Compile Include="BaseDonnee\Contexte.cs" />
-    <Compile Include="BaseDonnee\Contrat.cs">
-      <DependentUpon>Model_IDM.tt</DependentUpon>
+    <Compile Include="BaseDonnee\DataSetVille.cs">
+      <DependentUpon>DataSetVille.xsd</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="BaseDonnee\DataSetVille.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -75,63 +85,25 @@
       <DependentUpon>DataSetVille.xsd</DependentUpon>
     </Compile>
     <Compile Include="BaseDonnee\DonneeMemoire.cs" />
-    <Compile Include="BaseDonnee\DossierLocalView.cs">
+    <Compile Include="Client.cs">
       <DependentUpon>Model_IDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="BaseDonnee\DossierStationnementView.cs">
+    <Compile Include="CodeElectronique.cs">
       <DependentUpon>Model_IDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="BaseDonnee\Espace.cs">
+    <Compile Include="Connexion.cs">
       <DependentUpon>Model_IDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="BaseDonnee\Local.cs">
+    <Compile Include="Contrat.cs">
       <DependentUpon>Model_IDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="BaseDonnee\MethodePaiement.cs">
-      <DependentUpon>Model_IDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BaseDonnee\Model_IDM.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model_IDM.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BaseDonnee\Model_IDM.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model_IDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BaseDonnee\Model_IDM.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model_IDM.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="BaseDonnee\Paiement.cs">
-      <DependentUpon>Model_IDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BaseDonnee\Site.cs">
-      <DependentUpon>Model_IDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BaseDonnee\Stationnement.cs">
-      <DependentUpon>Model_IDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BaseDonnee\Taxe.cs">
-      <DependentUpon>Model_IDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BaseDonnee\Telephone.cs">
-      <DependentUpon>Model_IDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BaseDonnee\TypeEspace.cs">
-      <DependentUpon>Model_IDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BaseDonnee\Vehicule.cs">
-      <DependentUpon>Model_IDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BaseDonnee\Ville.cs">
-      <DependentUpon>Model_IDM.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Controleur\Co.cs" />
+    <Compile Include="Controleur\CoConnexion.cs" />
     <Compile Include="Controleur\CoContrat.cs" />
     <Compile Include="Controleur\CoEspace.cs" />
     <Compile Include="Controleur\CoLocal.cs" />
+    <Compile Include="Controleur\CoLoyer.cs" />
+    <Compile Include="Controleur\Controller.cs" />
     <Compile Include="Controleur\CoPaiement.cs" />
     <Compile Include="Controleur\CoSite.cs" />
     <Compile Include="Controleur\CoStationnement.cs" />
@@ -139,7 +111,68 @@
     <Compile Include="Controleur\CoTypeEspace.cs" />
     <Compile Include="Controleur\CoVille.cs" />
     <Compile Include="Controleur\CoVue.cs" />
+    <Compile Include="DisponibiliteEspace_Client.cs">
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DossiersLocalView.cs">
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DossierStationnementView.cs">
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Espace.cs">
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Local.cs">
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Loyer.cs">
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MethodePaiement.cs">
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model_IDM.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model_IDM.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model_IDM.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model_IDM.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model_IDM.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Paiement.cs">
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Site.cs">
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Stationnement.cs">
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Taxe.cs">
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Telephone.cs">
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Test.cs" />
     <Compile Include="Tools.cs" />
+    <Compile Include="TypeEspace.cs">
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vehicule.cs">
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ville.cs">
+      <DependentUpon>Model_IDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Vue\DossierClient.cs" />
     <Compile Include="Vue\DossierEspace.cs" />
     <Compile Include="Vue\FormAjoutEspace.cs">
@@ -150,7 +183,6 @@
     </Compile>
     <Compile Include="Controleur\CoCodeElectronique.cs" />
     <Compile Include="Controleur\CoTelephone.cs" />
-    <Compile Include="BaseDonnee\Database.cs" />
     <Compile Include="DataSetIDM.cs">
       <DependentUpon>DataSetIDM.xsd</DependentUpon>
       <SubType>Component</SubType>
@@ -188,12 +220,21 @@
     <Compile Include="Vue\FormAjoutClient.Designer.cs">
       <DependentUpon>FormAjoutClient.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vue\FormTaxes.cs">
+    <Compile Include="Vue\FormSolde.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vue\FormTaxes.Designer.cs">
-      <DependentUpon>FormTaxes.cs</DependentUpon>
+    <Compile Include="Vue\FormSolde.Designer.cs">
+      <DependentUpon>FormSolde.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vue\FormTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vue\FormTest.Designer.cs">
+      <DependentUpon>FormTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vue\VueAjoutSite.cs" />
+    <Compile Include="Vue\VueSectionAdminAbstrait.cs" />
+    <Compile Include="Vue\VueModifierTaxe.cs" />
     <EmbeddedResource Include="Vue\FormAjoutEspace.resx">
       <DependentUpon>FormAjoutEspace.cs</DependentUpon>
     </EmbeddedResource>
@@ -219,8 +260,11 @@
     <EmbeddedResource Include="Vue\FormAjoutClient.resx">
       <DependentUpon>FormAjoutClient.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vue\FormTaxes.resx">
-      <DependentUpon>FormTaxes.cs</DependentUpon>
+    <EmbeddedResource Include="Vue\FormSolde.resx">
+      <DependentUpon>FormSolde.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vue\FormTest.resx">
+      <DependentUpon>FormTest.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="BaseDonnee\DataSetVille.xsc">
       <DependentUpon>DataSetVille.xsd</DependentUpon>
@@ -232,23 +276,6 @@
     </None>
     <None Include="BaseDonnee\DataSetVille.xss">
       <DependentUpon>DataSetVille.xsd</DependentUpon>
-    </None>
-    <EntityDeploy Include="BaseDonnee\Model_IDM.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model_IDM.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="BaseDonnee\Model_IDM.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model_IDM.edmx</DependentUpon>
-      <LastGenOutput>Model_IDM.Context.cs</LastGenOutput>
-    </None>
-    <None Include="BaseDonnee\Model_IDM.edmx.diagram">
-      <DependentUpon>Model_IDM.edmx</DependentUpon>
-    </None>
-    <None Include="BaseDonnee\Model_IDM.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model_IDM.edmx</DependentUpon>
-      <LastGenOutput>Model_IDM.cs</LastGenOutput>
     </None>
     <None Include="DataSetIDM.xsc">
       <DependentUpon>DataSetIDM.xsd</DependentUpon>
@@ -264,6 +291,23 @@
       <DependentUpon>DataSetIDM.xsd</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <EntityDeploy Include="Model_IDM.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model_IDM.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model_IDM.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model_IDM.edmx</DependentUpon>
+      <LastGenOutput>Model_IDM.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Model_IDM.edmx.diagram">
+      <DependentUpon>Model_IDM.edmx</DependentUpon>
+    </None>
+    <None Include="Model_IDM.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model_IDM.edmx</DependentUpon>
+      <LastGenOutput>Model_IDM.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -276,13 +320,32 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\idmlogopetit.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 et x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

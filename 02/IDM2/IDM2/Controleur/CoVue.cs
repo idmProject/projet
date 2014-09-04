@@ -18,9 +18,9 @@ namespace IDM2.Controleur
             
         }
 
-        public DossierLocalView ObtenirDossierLocalView(int espaceId)
+        public DossiersLocalView ObtenirDossierLocalView(int espaceId)
         {
-            return _bd.DossierLocalView.Find(espaceId);
+            return _bd.DossiersLocalView.Find(espaceId);
         }
 
         public DossierStationnementView ObtenirDossierStationnementView(int espaceId)
@@ -28,6 +28,7 @@ namespace IDM2.Controleur
             return _bd.DossierStationnementView.Find(espaceId);
         }
 
+        
         
     }
 }

@@ -14,10 +14,6 @@ namespace IDM2.Vue
     public class DossierClient
     {
         private Client _client;
-        private CoClient _controllerClient;
-        private CoTelephone _controllerTelephone;
-        private CoCodeElectronique _controllerCode;
-        private CoVille _controllerVille;
         private List<Label> _labels;
 
         private class InfoClient
@@ -35,10 +31,6 @@ namespace IDM2.Vue
         public DossierClient(Client client)
         {
             _client = client;
-            _controllerClient = new CoClient();
-            _controllerTelephone = new CoTelephone();
-            _controllerCode = new CoCodeElectronique();
-            _controllerVille = new CoVille();
             _labels = new List<Label>();
         }
 
@@ -48,16 +40,11 @@ namespace IDM2.Vue
 
             gb.Size = new Size(300, 589);
             gb.Name = "DossierClient";
-            
-            //btnModifierClient.Enabled = true;
-            //btnEffectuerPaiement.Enabled = true;
-            //btnVoirSoldeClient.Enabled = true;
-            //btnFermerDossier.Enabled = true;
-            //pnlSolde.BackColor = Color.Green;
 
 
             List<InfoClient> infoClient = new List<InfoClient>();
-            Telephone[] telsClient = _controllerTelephone.ObtenirTelephones(_client);
+            Telephone[] telsClient = Controller.Telephone.ObtenirTelephones(_client);
+            CodeElectronique[] codesClient = Controller.CodeElectronique.ObtenirCodesElectroniques(_client).ToArray();
 
 
 
@@ -70,13 +57,22 @@ namespace IDM2.Vue
                 infoClient.Add(new InfoClient("DateInscription", "Date d'inscription: " + _client.DateEntree.Value.Day + " " + Tools.GetMonth(_client.DateEntree.Value.Month) + " " + _client.DateEntree.Value.Year));
 
             if (_client.Adresse != null && _client.VilleId != null)
-                infoClient.Add(new InfoClient("Adresse", _client.Adresse + " " + _controllerVille.ObtenirVille((int)_client.VilleId).Ville1));
+                infoClient.Add(new InfoClient("Adresse", _client.Adresse + " " + Controller.Ville.ObtenirVille((int)_client.VilleId).Ville1));
 
             for (int i = 0; i < telsClient.Length; i++)
                 infoClient.Add(new InfoClient("Telephone" + telsClient[i].Description, Tools.FormatTelephone(telsClient[i].NoTel) + "  ( " + telsClient[i].Description + ": " + telsClient[i].Contact + " )"));
 
+            for (int i = 0; i < codesClient.Length; i++)
+                infoClient.Add(new InfoClient("Code" + codesClient[i].TypeCode, "Code " + codesClient[i].TypeCode + ": " + codesClient[i].NoCode));
+
             if (_client.Commentaire != null)
                 infoClient.Add(new InfoClient("Commentaire", "Commentaire: " + _client.Commentaire));
+
+            if (Controller.Client.EstAssocierContrat(_client))
+                gb.BackColor = Color.FromArgb(241, 255, 245);
+            else
+                gb.BackColor = Color.FromArgb(255, 243, 241);
+
 
             // Ajouter methode de paiement
 

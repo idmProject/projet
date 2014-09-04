@@ -66,5 +66,22 @@ namespace IDM2
 
             return newTel;
         }
+
+        public static string FormatArgent(decimal montant)
+        {
+            return montant.ToString("0.00") + " $";
+        }
+
+        public static string FormatDate(DateTime date)
+        {
+            return date.Day.ToString() + " " + GetMonth(date.Month) + " " + date.Year.ToString();
+        }
+
+
+        public static string FormatDateParenthese(DateTime date)
+        {
+            return "( " + date.Day.ToString() + " " + GetMonth(date.Month) + " " + date.Year.ToString() + " )";
+        }
+
     }
 }

@@ -34,5 +34,15 @@ namespace IDM2.Controleur
         {
             return (_bd.Ville.Count(v => v.Ville1 == ville)) == 1;
         }
+
+        /// <summary>
+        /// fonctionne pas!
+        /// </summary>
+        /// <param name="villeId"></param>
+        /// <returns></returns>
+        public bool ValiderVille(int villeId)
+        {
+            return (_bd.Ville.Count(v => v.VilleId == villeId)) == 1;
+        }
     }
 }

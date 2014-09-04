@@ -1,56 +1,128 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="CREATE_IDMModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="CREATE_IDMModelStoreContainer">
-    <EntitySet Name="Client" EntityType="CREATE_IDMModel.Store.Client" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="CodeElectronique" EntityType="CREATE_IDMModel.Store.CodeElectronique" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Contrat" EntityType="CREATE_IDMModel.Store.Contrat" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Espace" EntityType="CREATE_IDMModel.Store.Espace" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Local" EntityType="CREATE_IDMModel.Store.Local" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Paiement" EntityType="CREATE_IDMModel.Store.Paiement" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Site" EntityType="CREATE_IDMModel.Store.Site" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Stationnement" EntityType="CREATE_IDMModel.Store.Stationnement" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Taxe" EntityType="CREATE_IDMModel.Store.Taxe" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Telephone" EntityType="CREATE_IDMModel.Store.Telephone" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="TypeEspace" EntityType="CREATE_IDMModel.Store.TypeEspace" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Vehicule" EntityType="CREATE_IDMModel.Store.Vehicule" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Ville" EntityType="CREATE_IDMModel.Store.Ville" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="Client_Ville_FK" Association="CREATE_IDMModel.Store.Client_Ville_FK">
+<Schema Namespace="IDM_DATAModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="IDM_DATAModelStoreContainer">
+    <EntitySet Name="Client" EntityType="IDM_DATAModel.Store.Client" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ClientTelephone" EntityType="IDM_DATAModel.Store.ClientTelephone" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CodeElectronique" EntityType="IDM_DATAModel.Store.CodeElectronique" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Connexion" EntityType="IDM_DATAModel.Store.Connexion" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Contrat" EntityType="IDM_DATAModel.Store.Contrat" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Espace" EntityType="IDM_DATAModel.Store.Espace" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Local" EntityType="IDM_DATAModel.Store.Local" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Loyer" EntityType="IDM_DATAModel.Store.Loyer" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LoyerPaiement" EntityType="IDM_DATAModel.Store.LoyerPaiement" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MethodePaiement" EntityType="IDM_DATAModel.Store.MethodePaiement" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Paiement" EntityType="IDM_DATAModel.Store.Paiement" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Site" EntityType="IDM_DATAModel.Store.Site" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Stationnement" EntityType="IDM_DATAModel.Store.Stationnement" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Taxe" EntityType="IDM_DATAModel.Store.Taxe" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Telephone" EntityType="IDM_DATAModel.Store.Telephone" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TypeEspace" EntityType="IDM_DATAModel.Store.TypeEspace" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Vehicule" EntityType="IDM_DATAModel.Store.Vehicule" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Ville" EntityType="IDM_DATAModel.Store.Ville" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DisponibiliteEspace_Client" EntityType="IDM_DATAModel.Store.DisponibiliteEspace_Client" store:Type="Views" store:Schema="dbo" store:Name="DisponibiliteEspace_Client">
+      <DefiningQuery>SELECT 
+      [DisponibiliteEspace_Client].[ContratId] AS [ContratId], 
+      [DisponibiliteEspace_Client].[EspaceId] AS [EspaceId], 
+      [DisponibiliteEspace_Client].[Disponible] AS [Disponible], 
+      [DisponibiliteEspace_Client].[TypeEspaceId] AS [TypeEspaceId], 
+      [DisponibiliteEspace_Client].[ClientId] AS [ClientId]
+      FROM [dbo].[DisponibiliteEspace_Client] AS [DisponibiliteEspace_Client]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="DossiersLocalView" EntityType="IDM_DATAModel.Store.DossiersLocalView" store:Type="Views" store:Schema="dbo" store:Name="DossiersLocalView">
+      <DefiningQuery>SELECT 
+      [DossiersLocalView].[EspaceId] AS [EspaceId], 
+      [DossiersLocalView].[NoLocal] AS [NoLocal], 
+      [DossiersLocalView].[Disponible] AS [Disponible], 
+      [DossiersLocalView].[Description] AS [Description], 
+      [DossiersLocalView].[Largeur] AS [Largeur], 
+      [DossiersLocalView].[Longueur] AS [Longueur], 
+      [DossiersLocalView].[Prix] AS [Prix], 
+      [DossiersLocalView].[Alias] AS [Alias], 
+      [DossiersLocalView].[Ville] AS [Ville]
+      FROM [dbo].[DossiersLocalView] AS [DossiersLocalView]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="DossierStationnementView" EntityType="IDM_DATAModel.Store.DossierStationnementView" store:Type="Views" store:Schema="dbo" store:Name="DossierStationnementView">
+      <DefiningQuery>SELECT 
+      [DossierStationnementView].[EspaceId] AS [EspaceId], 
+      [DossierStationnementView].[NoStationnement] AS [NoStationnement], 
+      [DossierStationnementView].[Disponible] AS [Disponible], 
+      [DossierStationnementView].[Description] AS [Description], 
+      [DossierStationnementView].[Largeur] AS [Largeur], 
+      [DossierStationnementView].[Longueur] AS [Longueur], 
+      [DossierStationnementView].[Prix] AS [Prix], 
+      [DossierStationnementView].[Alias] AS [Alias], 
+      [DossierStationnementView].[Ville] AS [Ville]
+      FROM [dbo].[DossierStationnementView] AS [DossierStationnementView]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="Client_Methode_FK" Association="IDM_DATAModel.Store.Client_Methode_FK">
+      <End Role="MethodePaiement" EntitySet="MethodePaiement" />
+      <End Role="Client" EntitySet="Client" />
+    </AssociationSet>
+    <AssociationSet Name="Client_Ville_FK" Association="IDM_DATAModel.Store.Client_Ville_FK">
       <End Role="Ville" EntitySet="Ville" />
       <End Role="Client" EntitySet="Client" />
     </AssociationSet>
-    <AssociationSet Name="CodeElectronique_Site_FK" Association="CREATE_IDMModel.Store.CodeElectronique_Site_FK">
+    <AssociationSet Name="ClientTelephone_Client_FK" Association="IDM_DATAModel.Store.ClientTelephone_Client_FK">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="ClientTelephone" EntitySet="ClientTelephone" />
+    </AssociationSet>
+    <AssociationSet Name="ClientTelephone_Telephone_FK" Association="IDM_DATAModel.Store.ClientTelephone_Telephone_FK">
+      <End Role="Telephone" EntitySet="Telephone" />
+      <End Role="ClientTelephone" EntitySet="ClientTelephone" />
+    </AssociationSet>
+    <AssociationSet Name="CodeElectronique_Client_FK" Association="IDM_DATAModel.Store.CodeElectronique_Client_FK">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="CodeElectronique" EntitySet="CodeElectronique" />
+    </AssociationSet>
+    <AssociationSet Name="CodeElectronique_Site_FK" Association="IDM_DATAModel.Store.CodeElectronique_Site_FK">
       <End Role="Site" EntitySet="Site" />
       <End Role="CodeElectronique" EntitySet="CodeElectronique" />
     </AssociationSet>
-    <AssociationSet Name="Contrat_Espace_FK" Association="CREATE_IDMModel.Store.Contrat_Espace_FK">
+    <AssociationSet Name="Contrat_Client_FK" Association="IDM_DATAModel.Store.Contrat_Client_FK">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Contrat" EntitySet="Contrat" />
+    </AssociationSet>
+    <AssociationSet Name="Contrat_Espace_FK" Association="IDM_DATAModel.Store.Contrat_Espace_FK">
       <End Role="Espace" EntitySet="Espace" />
       <End Role="Contrat" EntitySet="Contrat" />
     </AssociationSet>
-    <AssociationSet Name="Espace_Stationnement_FK" Association="CREATE_IDMModel.Store.Espace_Stationnement_FK">
+    <AssociationSet Name="Espace_Stationnement_FK" Association="IDM_DATAModel.Store.Espace_Stationnement_FK">
       <End Role="Espace" EntitySet="Espace" />
       <End Role="Stationnement" EntitySet="Stationnement" />
     </AssociationSet>
-    <AssociationSet Name="Espace_TypeEspace_FK" Association="CREATE_IDMModel.Store.Espace_TypeEspace_FK">
+    <AssociationSet Name="Espace_TypeEspace_FK" Association="IDM_DATAModel.Store.Espace_TypeEspace_FK">
       <End Role="TypeEspace" EntitySet="TypeEspace" />
       <End Role="Espace" EntitySet="Espace" />
     </AssociationSet>
-    <AssociationSet Name="Local_Espace_FK" Association="CREATE_IDMModel.Store.Local_Espace_FK">
+    <AssociationSet Name="Local_Espace_FK" Association="IDM_DATAModel.Store.Local_Espace_FK">
       <End Role="Espace" EntitySet="Espace" />
       <End Role="Local" EntitySet="Local" />
     </AssociationSet>
-    <AssociationSet Name="Paiement_Taxe_FK" Association="CREATE_IDMModel.Store.Paiement_Taxe_FK">
-      <End Role="Taxe" EntitySet="Taxe" />
+    <AssociationSet Name="Loyer_Contrat_FK" Association="IDM_DATAModel.Store.Loyer_Contrat_FK">
+      <End Role="Contrat" EntitySet="Contrat" />
+      <End Role="Loyer" EntitySet="Loyer" />
+    </AssociationSet>
+    <AssociationSet Name="LoyerPaiement_Loyer_DateLoyer_FK" Association="IDM_DATAModel.Store.LoyerPaiement_Loyer_DateLoyer_FK">
+      <End Role="Loyer" EntitySet="Loyer" />
+      <End Role="LoyerPaiement" EntitySet="LoyerPaiement" />
+    </AssociationSet>
+    <AssociationSet Name="LoyerPaiement_Paiemen_FK" Association="IDM_DATAModel.Store.LoyerPaiement_Paiemen_FK">
+      <End Role="Paiement" EntitySet="Paiement" />
+      <End Role="LoyerPaiement" EntitySet="LoyerPaiement" />
+    </AssociationSet>
+    <AssociationSet Name="Paiement_Client_FK" Association="IDM_DATAModel.Store.Paiement_Client_FK">
+      <End Role="Client" EntitySet="Client" />
       <End Role="Paiement" EntitySet="Paiement" />
     </AssociationSet>
-    <AssociationSet Name="Site_Vill_FK" Association="CREATE_IDMModel.Store.Site_Vill_FK">
+    <AssociationSet Name="Site_Vill_FK" Association="IDM_DATAModel.Store.Site_Vill_FK">
       <End Role="Ville" EntitySet="Ville" />
       <End Role="Site" EntitySet="Site" />
     </AssociationSet>
-    <AssociationSet Name="TypeEspace_Site_FK" Association="CREATE_IDMModel.Store.TypeEspace_Site_FK">
+    <AssociationSet Name="TypeEspace_Site_FK" Association="IDM_DATAModel.Store.TypeEspace_Site_FK">
       <End Role="Site" EntitySet="Site" />
       <End Role="TypeEspace" EntitySet="TypeEspace" />
     </AssociationSet>
-    <AssociationSet Name="Vehicule_Stationnement_FK" Association="CREATE_IDMModel.Store.Vehicule_Stationnement_FK">
+    <AssociationSet Name="Vehicule_Stationnement_FK" Association="IDM_DATAModel.Store.Vehicule_Stationnement_FK">
       <End Role="Stationnement" EntitySet="Stationnement" />
       <End Role="Vehicule" EntitySet="Vehicule" />
     </AssociationSet>
@@ -66,9 +138,17 @@
     <Property Name="DateEntree" Type="datetime" />
     <Property Name="Nom" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Commentaire" Type="nvarchar" MaxLength="500" />
-    <Property Name="MethodePaiement" Type="nvarchar" MaxLength="50" />
+    <Property Name="MethodePaiementId" Type="int" />
     <Property Name="Prenom" Type="nvarchar" MaxLength="50" />
     <Property Name="Solde" Type="money" />
+  </EntityType>
+  <EntityType Name="ClientTelephone">
+    <Key>
+      <PropertyRef Name="ClientId" />
+      <PropertyRef Name="TelephoneId" />
+    </Key>
+    <Property Name="ClientId" Type="int" Nullable="false" />
+    <Property Name="TelephoneId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="CodeElectronique">
     <Key>
@@ -79,6 +159,13 @@
     <Property Name="TypeCode" Type="nvarchar" MaxLength="50" />
     <Property Name="ClientId" Type="int" />
     <Property Name="SiteId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Connexion">
+    <Key>
+      <PropertyRef Name="LastConnexion" />
+    </Key>
+    <Property Name="LastConnexion" Type="datetime" Nullable="false" />
+    <Property Name="DernierLoyerCreer" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Contrat">
     <Key>
@@ -98,7 +185,6 @@
     <Property Name="EspaceId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="TypeEspaceId" Type="int" Nullable="false" />
     <Property Name="Disponible" Type="bit" Nullable="false" />
-    <Property Name="SiteId" Type="int" />
   </EntityType>
   <EntityType Name="Local">
     <Key>
@@ -107,15 +193,44 @@
     <Property Name="EspaceId" Type="int" Nullable="false" />
     <Property Name="NoLocal" Type="nvarchar" Nullable="false" MaxLength="50" />
   </EntityType>
+  <EntityType Name="Loyer">
+    <Key>
+      <PropertyRef Name="DateLoyer" />
+      <PropertyRef Name="ContratId" />
+    </Key>
+    <Property Name="DateLoyer" Type="date" Nullable="false" />
+    <Property Name="ContratId" Type="int" Nullable="false" />
+    <Property Name="MontantLoyer" Type="money" Nullable="false" />
+    <Property Name="MontantPayer" Type="money" Nullable="false" />
+    <Property Name="EstPayer" Type="bit" />
+  </EntityType>
+  <EntityType Name="LoyerPaiement">
+    <Key>
+      <PropertyRef Name="DateLoyer" />
+      <PropertyRef Name="ContratId" />
+      <PropertyRef Name="PaiementId" />
+    </Key>
+    <Property Name="DateLoyer" Type="date" Nullable="false" />
+    <Property Name="ContratId" Type="int" Nullable="false" />
+    <Property Name="PaiementId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MethodePaiement">
+    <Key>
+      <PropertyRef Name="MethodePaiementId" />
+    </Key>
+    <Property Name="MethodePaiementId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="MethodeDescription" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
   <EntityType Name="Paiement">
     <Key>
       <PropertyRef Name="PaiementId" />
     </Key>
     <Property Name="PaiementId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="TaxeId" Type="int" Nullable="false" />
     <Property Name="DatePaiement" Type="datetime" Nullable="false" />
     <Property Name="MontantPaye" Type="money" Nullable="false" />
     <Property Name="ClientId" Type="int" Nullable="false" />
+    <Property Name="Commentaire" Type="nvarchar" MaxLength="500" />
+    <Property Name="MethodePaiementId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Site">
     <Key>
@@ -132,15 +247,16 @@
     </Key>
     <Property Name="EspaceId" Type="int" Nullable="false" />
     <Property Name="NoStationnement" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="TypeStationnement" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Taxe">
     <Key>
-      <PropertyRef Name="TaxeId" />
+      <PropertyRef Name="DateModification" />
+      <PropertyRef Name="Type" />
     </Key>
-    <Property Name="TaxeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="DateModification" Type="datetime" />
-    <Property Name="Taux" Type="float" />
-    <Property Name="Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateModification" Type="date" Nullable="false" />
+    <Property Name="Taux" Type="float" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="50" />
   </EntityType>
   <EntityType Name="Telephone">
     <Key>
@@ -160,6 +276,9 @@
     <Property Name="Description" Type="nvarchar" MaxLength="50" />
     <Property Name="Prix" Type="money" />
     <Property Name="SiteId" Type="int" Nullable="false" />
+    <Property Name="Largeur" Type="int" />
+    <Property Name="Longueur" Type="int" />
+    <Property Name="EstLocal" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Vehicule">
     <Key>
@@ -178,9 +297,68 @@
     <Property Name="VilleId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Ville" Type="nvarchar" Nullable="false" MaxLength="50" />
   </EntityType>
+  <!--Erreurs détectées durant la génération :
+      Avertissement 6002: La table/vue « D:\IDM PROJECT\DATABASE\IDM_DATA.MDF.dbo.DisponibiliteEspace_Client » n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.
+      -->
+  <EntityType Name="DisponibiliteEspace_Client">
+    <Key>
+      <PropertyRef Name="EspaceId" />
+    </Key>
+    <Property Name="ContratId" Type="int" />
+    <Property Name="EspaceId" Type="int" Nullable="false" />
+    <Property Name="Disponible" Type="bit" Nullable="false" />
+    <Property Name="TypeEspaceId" Type="int" Nullable="false" />
+    <Property Name="ClientId" Type="int" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+      Avertissement 6002: La table/vue « D:\IDM PROJECT\DATABASE\IDM_DATA.MDF.dbo.DossiersLocalView » n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.
+      -->
+  <EntityType Name="DossiersLocalView">
+    <Key>
+      <PropertyRef Name="EspaceId" />
+    </Key>
+    <Property Name="EspaceId" Type="int" Nullable="false" />
+    <Property Name="NoLocal" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Disponible" Type="bit" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+    <Property Name="Largeur" Type="int" />
+    <Property Name="Longueur" Type="int" />
+    <Property Name="Prix" Type="money" />
+    <Property Name="Alias" Type="nvarchar" MaxLength="50" />
+    <Property Name="Ville" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+      Avertissement 6002: La table/vue « D:\IDM PROJECT\DATABASE\IDM_DATA.MDF.dbo.DossierStationnementView » n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.
+      -->
+  <EntityType Name="DossierStationnementView">
+    <Key>
+      <PropertyRef Name="EspaceId" />
+    </Key>
+    <Property Name="EspaceId" Type="int" Nullable="false" />
+    <Property Name="NoStationnement" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Disponible" Type="bit" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+    <Property Name="Largeur" Type="int" />
+    <Property Name="Longueur" Type="int" />
+    <Property Name="Prix" Type="money" />
+    <Property Name="Alias" Type="nvarchar" MaxLength="50" />
+    <Property Name="Ville" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <Association Name="Client_Methode_FK">
+    <End Role="MethodePaiement" Type="IDM_DATAModel.Store.MethodePaiement" Multiplicity="0..1" />
+    <End Role="Client" Type="IDM_DATAModel.Store.Client" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MethodePaiement">
+        <PropertyRef Name="MethodePaiementId" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="MethodePaiementId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="Client_Ville_FK">
-    <End Role="Ville" Type="CREATE_IDMModel.Store.Ville" Multiplicity="0..1" />
-    <End Role="Client" Type="CREATE_IDMModel.Store.Client" Multiplicity="*" />
+    <End Role="Ville" Type="IDM_DATAModel.Store.Ville" Multiplicity="0..1" />
+    <End Role="Client" Type="IDM_DATAModel.Store.Client" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Ville">
         <PropertyRef Name="VilleId" />
@@ -190,9 +368,47 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="ClientTelephone_Client_FK">
+    <End Role="Client" Type="IDM_DATAModel.Store.Client" Multiplicity="1" />
+    <End Role="ClientTelephone" Type="IDM_DATAModel.Store.ClientTelephone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ClientId" />
+      </Principal>
+      <Dependent Role="ClientTelephone">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClientTelephone_Telephone_FK">
+    <End Role="Telephone" Type="IDM_DATAModel.Store.Telephone" Multiplicity="1" />
+    <End Role="ClientTelephone" Type="IDM_DATAModel.Store.ClientTelephone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Telephone">
+        <PropertyRef Name="TelephoneId" />
+      </Principal>
+      <Dependent Role="ClientTelephone">
+        <PropertyRef Name="TelephoneId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CodeElectronique_Client_FK">
+    <End Role="Client" Type="IDM_DATAModel.Store.Client" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CodeElectronique" Type="IDM_DATAModel.Store.CodeElectronique" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ClientId" />
+      </Principal>
+      <Dependent Role="CodeElectronique">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="CodeElectronique_Site_FK">
-    <End Role="Site" Type="CREATE_IDMModel.Store.Site" Multiplicity="1" />
-    <End Role="CodeElectronique" Type="CREATE_IDMModel.Store.CodeElectronique" Multiplicity="*" />
+    <End Role="Site" Type="IDM_DATAModel.Store.Site" Multiplicity="1" />
+    <End Role="CodeElectronique" Type="IDM_DATAModel.Store.CodeElectronique" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Site">
         <PropertyRef Name="SiteId" />
@@ -202,9 +418,21 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="Contrat_Client_FK">
+    <End Role="Client" Type="IDM_DATAModel.Store.Client" Multiplicity="1" />
+    <End Role="Contrat" Type="IDM_DATAModel.Store.Contrat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ClientId" />
+      </Principal>
+      <Dependent Role="Contrat">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="Contrat_Espace_FK">
-    <End Role="Espace" Type="CREATE_IDMModel.Store.Espace" Multiplicity="1" />
-    <End Role="Contrat" Type="CREATE_IDMModel.Store.Contrat" Multiplicity="*" />
+    <End Role="Espace" Type="IDM_DATAModel.Store.Espace" Multiplicity="1" />
+    <End Role="Contrat" Type="IDM_DATAModel.Store.Contrat" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Espace">
         <PropertyRef Name="EspaceId" />
@@ -215,10 +443,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="Espace_Stationnement_FK">
-    <End Role="Espace" Type="CREATE_IDMModel.Store.Espace" Multiplicity="1">
+    <End Role="Espace" Type="IDM_DATAModel.Store.Espace" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Role="Stationnement" Type="CREATE_IDMModel.Store.Stationnement" Multiplicity="0..1" />
+    <End Role="Stationnement" Type="IDM_DATAModel.Store.Stationnement" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Espace">
         <PropertyRef Name="EspaceId" />
@@ -229,10 +457,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="Espace_TypeEspace_FK">
-    <End Role="TypeEspace" Type="CREATE_IDMModel.Store.TypeEspace" Multiplicity="1">
+    <End Role="TypeEspace" Type="IDM_DATAModel.Store.TypeEspace" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Role="Espace" Type="CREATE_IDMModel.Store.Espace" Multiplicity="*" />
+    <End Role="Espace" Type="IDM_DATAModel.Store.Espace" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="TypeEspace">
         <PropertyRef Name="TypeEspaceId" />
@@ -243,10 +471,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="Local_Espace_FK">
-    <End Role="Espace" Type="CREATE_IDMModel.Store.Espace" Multiplicity="1">
+    <End Role="Espace" Type="IDM_DATAModel.Store.Espace" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Role="Local" Type="CREATE_IDMModel.Store.Local" Multiplicity="0..1" />
+    <End Role="Local" Type="IDM_DATAModel.Store.Local" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Espace">
         <PropertyRef Name="EspaceId" />
@@ -256,21 +484,59 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="Paiement_Taxe_FK">
-    <End Role="Taxe" Type="CREATE_IDMModel.Store.Taxe" Multiplicity="1" />
-    <End Role="Paiement" Type="CREATE_IDMModel.Store.Paiement" Multiplicity="*" />
+  <Association Name="Loyer_Contrat_FK">
+    <End Role="Contrat" Type="IDM_DATAModel.Store.Contrat" Multiplicity="1" />
+    <End Role="Loyer" Type="IDM_DATAModel.Store.Loyer" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Taxe">
-        <PropertyRef Name="TaxeId" />
+      <Principal Role="Contrat">
+        <PropertyRef Name="ContratId" />
+      </Principal>
+      <Dependent Role="Loyer">
+        <PropertyRef Name="ContratId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LoyerPaiement_Loyer_DateLoyer_FK">
+    <End Role="Loyer" Type="IDM_DATAModel.Store.Loyer" Multiplicity="1" />
+    <End Role="LoyerPaiement" Type="IDM_DATAModel.Store.LoyerPaiement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Loyer">
+        <PropertyRef Name="DateLoyer" />
+        <PropertyRef Name="ContratId" />
+      </Principal>
+      <Dependent Role="LoyerPaiement">
+        <PropertyRef Name="DateLoyer" />
+        <PropertyRef Name="ContratId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LoyerPaiement_Paiemen_FK">
+    <End Role="Paiement" Type="IDM_DATAModel.Store.Paiement" Multiplicity="1" />
+    <End Role="LoyerPaiement" Type="IDM_DATAModel.Store.LoyerPaiement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Paiement">
+        <PropertyRef Name="PaiementId" />
+      </Principal>
+      <Dependent Role="LoyerPaiement">
+        <PropertyRef Name="PaiementId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Paiement_Client_FK">
+    <End Role="Client" Type="IDM_DATAModel.Store.Client" Multiplicity="1" />
+    <End Role="Paiement" Type="IDM_DATAModel.Store.Paiement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ClientId" />
       </Principal>
       <Dependent Role="Paiement">
-        <PropertyRef Name="TaxeId" />
+        <PropertyRef Name="ClientId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="Site_Vill_FK">
-    <End Role="Ville" Type="CREATE_IDMModel.Store.Ville" Multiplicity="1" />
-    <End Role="Site" Type="CREATE_IDMModel.Store.Site" Multiplicity="*" />
+    <End Role="Ville" Type="IDM_DATAModel.Store.Ville" Multiplicity="1" />
+    <End Role="Site" Type="IDM_DATAModel.Store.Site" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Ville">
         <PropertyRef Name="VilleId" />
@@ -281,10 +547,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="TypeEspace_Site_FK">
-    <End Role="Site" Type="CREATE_IDMModel.Store.Site" Multiplicity="1">
+    <End Role="Site" Type="IDM_DATAModel.Store.Site" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Role="TypeEspace" Type="CREATE_IDMModel.Store.TypeEspace" Multiplicity="*" />
+    <End Role="TypeEspace" Type="IDM_DATAModel.Store.TypeEspace" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Site">
         <PropertyRef Name="SiteId" />
@@ -295,10 +561,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="Vehicule_Stationnement_FK">
-    <End Role="Stationnement" Type="CREATE_IDMModel.Store.Stationnement" Multiplicity="1">
+    <End Role="Stationnement" Type="IDM_DATAModel.Store.Stationnement" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Role="Vehicule" Type="CREATE_IDMModel.Store.Vehicule" Multiplicity="0..1" />
+    <End Role="Vehicule" Type="IDM_DATAModel.Store.Vehicule" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Stationnement">
         <PropertyRef Name="EspaceId" />

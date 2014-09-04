@@ -36,32 +36,41 @@
             this.clientTableAdapter = new IDM2.DataSetIDMTableAdapters.ClientTableAdapter();
             this.emplacementTableAdapter = new IDM2.DataSetIDMTableAdapters.EmplacementTableAdapter();
             this.groupBoxAjoutEspace = new System.Windows.Forms.GroupBox();
+            this.chkBoxCreerLocal = new System.Windows.Forms.CheckBox();
+            this.gbCreationTypeEspace = new System.Windows.Forms.GroupBox();
+            this.btnTypeOk = new System.Windows.Forms.Button();
+            this.btnTypeAppliquer = new System.Windows.Forms.Button();
+            this.btnTypeAnnuler = new System.Windows.Forms.Button();
+            this.txtLargeur = new System.Windows.Forms.TextBox();
+            this.txtLongueur = new System.Windows.Forms.TextBox();
+            this.lblX = new System.Windows.Forms.Label();
             this.txtMontantTvq = new System.Windows.Forms.TextBox();
+            this.lblGrandeur = new System.Windows.Forms.Label();
             this.txtMontantTps = new System.Windows.Forms.TextBox();
-            this.lblMontantAvTaxe = new System.Windows.Forms.Label();
-            this.txtMontantAvTaxe = new System.Windows.Forms.TextBox();
-            this.lblTvq = new System.Windows.Forms.Label();
-            this.lblTps = new System.Windows.Forms.Label();
-            this.txtTvq = new System.Windows.Forms.TextBox();
-            this.txtTps = new System.Windows.Forms.TextBox();
-            this.radioButtonStationnement = new System.Windows.Forms.RadioButton();
-            this.radioButtonLocal = new System.Windows.Forms.RadioButton();
-            this.lblPrix = new System.Windows.Forms.Label();
-            this.txtPrix = new System.Windows.Forms.TextBox();
-            this.chkBoxCreerTypeEspace = new System.Windows.Forms.CheckBox();
-            this.lblDescription = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.TextBox();
+            this.lblMontantAvTaxe = new System.Windows.Forms.Label();
+            this.lblDescription = new System.Windows.Forms.Label();
+            this.txtMontantAvTaxe = new System.Windows.Forms.TextBox();
+            this.txtPrix = new System.Windows.Forms.TextBox();
+            this.lblTvq = new System.Windows.Forms.Label();
+            this.lblPrix = new System.Windows.Forms.Label();
+            this.lblTps = new System.Windows.Forms.Label();
+            this.radioButtonLocal = new System.Windows.Forms.RadioButton();
+            this.txtTvq = new System.Windows.Forms.TextBox();
+            this.radioButtonStationnement = new System.Windows.Forms.RadioButton();
+            this.txtTps = new System.Windows.Forms.TextBox();
+            this.groupBoxAjoutLocal = new System.Windows.Forms.GroupBox();
+            this.txtNoLocal = new System.Windows.Forms.TextBox();
+            this.lblNoLocal = new System.Windows.Forms.Label();
             this.chkBoxDisponible = new System.Windows.Forms.CheckBox();
+            this.btnLocalOk = new System.Windows.Forms.Button();
+            this.btnLocalAppliquer = new System.Windows.Forms.Button();
+            this.btnLocalAnnuler = new System.Windows.Forms.Button();
+            this.chkBoxCreerTypeEspace = new System.Windows.Forms.CheckBox();
             this.lblBatiment = new System.Windows.Forms.Label();
             this.cmbBatiment = new System.Windows.Forms.ComboBox();
-            this.lblNoLocal = new System.Windows.Forms.Label();
-            this.txtNoLocal = new System.Windows.Forms.TextBox();
-            this.lblGrandeur = new System.Windows.Forms.Label();
-            this.lblX = new System.Windows.Forms.Label();
-            this.txtLongueur = new System.Windows.Forms.TextBox();
-            this.txtLargeur = new System.Windows.Forms.TextBox();
-            this.groupBoxInfoEspace = new System.Windows.Forms.GroupBox();
             this.listBoxLocal = new System.Windows.Forms.ListBox();
+            this.groupBoxInfoEspace = new System.Windows.Forms.GroupBox();
             this.lblTypeEspace = new System.Windows.Forms.Label();
             this.lblSite = new System.Windows.Forms.Label();
             this.cmbTypeEspace = new System.Windows.Forms.ComboBox();
@@ -69,29 +78,20 @@
             this.dataSetVille = new IDM2.BaseDonnee.DataSetVille();
             this.cmbSite = new System.Windows.Forms.ComboBox();
             this.siteBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnOk = new System.Windows.Forms.Button();
-            this.btnAnnuler = new System.Windows.Forms.Button();
-            this.btnAppliquer = new System.Windows.Forms.Button();
             this.typeEspaceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.siteTableAdapter = new IDM2.BaseDonnee.DataSetVilleTableAdapters.SiteTableAdapter();
             this.typeEspaceTableAdapter = new IDM2.BaseDonnee.DataSetVilleTableAdapters.TypeEspaceTableAdapter();
-            this.groupBoxAjoutLocal = new System.Windows.Forms.GroupBox();
-            this.gbCreationTypeEspace = new System.Windows.Forms.GroupBox();
-            this.chkBoxCreerLocal = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.emplacementBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetIDM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emplacementBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).BeginInit();
             this.groupBoxAjoutEspace.SuspendLayout();
+            this.gbCreationTypeEspace.SuspendLayout();
+            this.groupBoxAjoutLocal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.typeEspaceBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetVille)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.siteBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.typeEspaceBindingSource)).BeginInit();
-            this.groupBoxAjoutLocal.SuspendLayout();
-            this.gbCreationTypeEspace.SuspendLayout();
             this.SuspendLayout();
             // 
             // emplacementBindingSource1
@@ -129,8 +129,8 @@
             this.groupBoxAjoutEspace.Controls.Add(this.chkBoxCreerTypeEspace);
             this.groupBoxAjoutEspace.Controls.Add(this.lblBatiment);
             this.groupBoxAjoutEspace.Controls.Add(this.cmbBatiment);
-            this.groupBoxAjoutEspace.Controls.Add(this.groupBoxInfoEspace);
             this.groupBoxAjoutEspace.Controls.Add(this.listBoxLocal);
+            this.groupBoxAjoutEspace.Controls.Add(this.groupBoxInfoEspace);
             this.groupBoxAjoutEspace.Controls.Add(this.lblTypeEspace);
             this.groupBoxAjoutEspace.Controls.Add(this.lblSite);
             this.groupBoxAjoutEspace.Controls.Add(this.cmbTypeEspace);
@@ -141,6 +141,105 @@
             this.groupBoxAjoutEspace.TabIndex = 0;
             this.groupBoxAjoutEspace.TabStop = false;
             // 
+            // chkBoxCreerLocal
+            // 
+            this.chkBoxCreerLocal.AutoSize = true;
+            this.chkBoxCreerLocal.Location = new System.Drawing.Point(15, 123);
+            this.chkBoxCreerLocal.Name = "chkBoxCreerLocal";
+            this.chkBoxCreerLocal.Size = new System.Drawing.Size(136, 17);
+            this.chkBoxCreerLocal.TabIndex = 85;
+            this.chkBoxCreerLocal.Text = "Créer un nouveau local";
+            this.chkBoxCreerLocal.UseVisualStyleBackColor = true;
+            this.chkBoxCreerLocal.CheckedChanged += new System.EventHandler(this.chkBoxCreerLocal_CheckedChanged);
+            // 
+            // gbCreationTypeEspace
+            // 
+            this.gbCreationTypeEspace.Controls.Add(this.btnTypeOk);
+            this.gbCreationTypeEspace.Controls.Add(this.btnTypeAppliquer);
+            this.gbCreationTypeEspace.Controls.Add(this.btnTypeAnnuler);
+            this.gbCreationTypeEspace.Controls.Add(this.txtLargeur);
+            this.gbCreationTypeEspace.Controls.Add(this.txtLongueur);
+            this.gbCreationTypeEspace.Controls.Add(this.lblX);
+            this.gbCreationTypeEspace.Controls.Add(this.txtMontantTvq);
+            this.gbCreationTypeEspace.Controls.Add(this.lblGrandeur);
+            this.gbCreationTypeEspace.Controls.Add(this.txtMontantTps);
+            this.gbCreationTypeEspace.Controls.Add(this.txtDescription);
+            this.gbCreationTypeEspace.Controls.Add(this.lblMontantAvTaxe);
+            this.gbCreationTypeEspace.Controls.Add(this.lblDescription);
+            this.gbCreationTypeEspace.Controls.Add(this.txtMontantAvTaxe);
+            this.gbCreationTypeEspace.Controls.Add(this.txtPrix);
+            this.gbCreationTypeEspace.Controls.Add(this.lblTvq);
+            this.gbCreationTypeEspace.Controls.Add(this.lblPrix);
+            this.gbCreationTypeEspace.Controls.Add(this.lblTps);
+            this.gbCreationTypeEspace.Controls.Add(this.radioButtonLocal);
+            this.gbCreationTypeEspace.Controls.Add(this.txtTvq);
+            this.gbCreationTypeEspace.Controls.Add(this.radioButtonStationnement);
+            this.gbCreationTypeEspace.Controls.Add(this.txtTps);
+            this.gbCreationTypeEspace.Location = new System.Drawing.Point(296, 19);
+            this.gbCreationTypeEspace.Name = "gbCreationTypeEspace";
+            this.gbCreationTypeEspace.Size = new System.Drawing.Size(296, 308);
+            this.gbCreationTypeEspace.TabIndex = 84;
+            this.gbCreationTypeEspace.TabStop = false;
+            this.gbCreationTypeEspace.Text = "Création d\'un type d\'espace";
+            this.gbCreationTypeEspace.Visible = false;
+            // 
+            // btnTypeOk
+            // 
+            this.btnTypeOk.Location = new System.Drawing.Point(6, 261);
+            this.btnTypeOk.Name = "btnTypeOk";
+            this.btnTypeOk.Size = new System.Drawing.Size(85, 23);
+            this.btnTypeOk.TabIndex = 84;
+            this.btnTypeOk.Text = "OK";
+            this.btnTypeOk.UseVisualStyleBackColor = true;
+            this.btnTypeOk.Click += new System.EventHandler(this.btnTypeOk_Click);
+            // 
+            // btnTypeAppliquer
+            // 
+            this.btnTypeAppliquer.Location = new System.Drawing.Point(188, 261);
+            this.btnTypeAppliquer.Name = "btnTypeAppliquer";
+            this.btnTypeAppliquer.Size = new System.Drawing.Size(85, 23);
+            this.btnTypeAppliquer.TabIndex = 82;
+            this.btnTypeAppliquer.Text = "Appliquer";
+            this.btnTypeAppliquer.UseVisualStyleBackColor = true;
+            this.btnTypeAppliquer.Click += new System.EventHandler(this.btnTypeAppliquer_Click);
+            // 
+            // btnTypeAnnuler
+            // 
+            this.btnTypeAnnuler.Location = new System.Drawing.Point(97, 261);
+            this.btnTypeAnnuler.Name = "btnTypeAnnuler";
+            this.btnTypeAnnuler.Size = new System.Drawing.Size(85, 23);
+            this.btnTypeAnnuler.TabIndex = 83;
+            this.btnTypeAnnuler.Text = "Annuler";
+            this.btnTypeAnnuler.UseVisualStyleBackColor = true;
+            this.btnTypeAnnuler.Click += new System.EventHandler(this.btnTypeAnnuler_Click);
+            // 
+            // txtLargeur
+            // 
+            this.txtLargeur.Enabled = false;
+            this.txtLargeur.Location = new System.Drawing.Point(6, 61);
+            this.txtLargeur.Name = "txtLargeur";
+            this.txtLargeur.Size = new System.Drawing.Size(29, 20);
+            this.txtLargeur.TabIndex = 58;
+            this.txtLargeur.TextChanged += new System.EventHandler(this.TypeEspace_ValueChanged);
+            // 
+            // txtLongueur
+            // 
+            this.txtLongueur.Enabled = false;
+            this.txtLongueur.Location = new System.Drawing.Point(61, 61);
+            this.txtLongueur.Name = "txtLongueur";
+            this.txtLongueur.Size = new System.Drawing.Size(29, 20);
+            this.txtLongueur.TabIndex = 59;
+            this.txtLongueur.TextChanged += new System.EventHandler(this.TypeEspace_ValueChanged);
+            // 
+            // lblX
+            // 
+            this.lblX.AutoSize = true;
+            this.lblX.Location = new System.Drawing.Point(38, 64);
+            this.lblX.Name = "lblX";
+            this.lblX.Size = new System.Drawing.Size(22, 13);
+            this.lblX.TabIndex = 60;
+            this.lblX.Text = "par";
+            // 
             // txtMontantTvq
             // 
             this.txtMontantTvq.Enabled = false;
@@ -149,6 +248,15 @@
             this.txtMontantTvq.Size = new System.Drawing.Size(72, 20);
             this.txtMontantTvq.TabIndex = 81;
             // 
+            // lblGrandeur
+            // 
+            this.lblGrandeur.AutoSize = true;
+            this.lblGrandeur.Location = new System.Drawing.Point(96, 64);
+            this.lblGrandeur.Name = "lblGrandeur";
+            this.lblGrandeur.Size = new System.Drawing.Size(91, 13);
+            this.lblGrandeur.TabIndex = 61;
+            this.lblGrandeur.Text = "Grandeur du local";
+            // 
             // txtMontantTps
             // 
             this.txtMontantTps.Enabled = false;
@@ -156,6 +264,16 @@
             this.txtMontantTps.Name = "txtMontantTps";
             this.txtMontantTps.Size = new System.Drawing.Size(72, 20);
             this.txtMontantTps.TabIndex = 80;
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.Enabled = false;
+            this.txtDescription.Location = new System.Drawing.Point(6, 190);
+            this.txtDescription.Multiline = true;
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(171, 65);
+            this.txtDescription.TabIndex = 67;
+            this.txtDescription.TextChanged += new System.EventHandler(this.TypeEspace_ValueChanged);
             // 
             // lblMontantAvTaxe
             // 
@@ -166,6 +284,15 @@
             this.lblMontantAvTaxe.TabIndex = 79;
             this.lblMontantAvTaxe.Text = "Montant avant taxe";
             // 
+            // lblDescription
+            // 
+            this.lblDescription.AutoSize = true;
+            this.lblDescription.Location = new System.Drawing.Point(183, 215);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(60, 13);
+            this.lblDescription.TabIndex = 68;
+            this.lblDescription.Text = "Description";
+            // 
             // txtMontantAvTaxe
             // 
             this.txtMontantAvTaxe.Enabled = false;
@@ -173,6 +300,16 @@
             this.txtMontantAvTaxe.Name = "txtMontantAvTaxe";
             this.txtMontantAvTaxe.Size = new System.Drawing.Size(158, 20);
             this.txtMontantAvTaxe.TabIndex = 78;
+            this.txtMontantAvTaxe.TextChanged += new System.EventHandler(this.TypeEspace_ValueChanged);
+            // 
+            // txtPrix
+            // 
+            this.txtPrix.Enabled = false;
+            this.txtPrix.Location = new System.Drawing.Point(6, 87);
+            this.txtPrix.Name = "txtPrix";
+            this.txtPrix.Size = new System.Drawing.Size(85, 20);
+            this.txtPrix.TabIndex = 70;
+            this.txtPrix.TextChanged += new System.EventHandler(this.TypeEspace_ValueChanged);
             // 
             // lblTvq
             // 
@@ -183,6 +320,15 @@
             this.lblTvq.TabIndex = 77;
             this.lblTvq.Text = "TVQ";
             // 
+            // lblPrix
+            // 
+            this.lblPrix.AutoSize = true;
+            this.lblPrix.Location = new System.Drawing.Point(97, 90);
+            this.lblPrix.Name = "lblPrix";
+            this.lblPrix.Size = new System.Drawing.Size(24, 13);
+            this.lblPrix.TabIndex = 71;
+            this.lblPrix.Text = "Prix";
+            // 
             // lblTps
             // 
             this.lblTps.AutoSize = true;
@@ -191,35 +337,6 @@
             this.lblTps.Size = new System.Drawing.Size(28, 13);
             this.lblTps.TabIndex = 76;
             this.lblTps.Text = "TPS";
-            // 
-            // txtTvq
-            // 
-            this.txtTvq.Enabled = false;
-            this.txtTvq.Location = new System.Drawing.Point(6, 164);
-            this.txtTvq.Name = "txtTvq";
-            this.txtTvq.Size = new System.Drawing.Size(46, 20);
-            this.txtTvq.TabIndex = 75;
-            // 
-            // txtTps
-            // 
-            this.txtTps.Enabled = false;
-            this.txtTps.Location = new System.Drawing.Point(6, 139);
-            this.txtTps.Name = "txtTps";
-            this.txtTps.Size = new System.Drawing.Size(46, 20);
-            this.txtTps.TabIndex = 74;
-            // 
-            // radioButtonStationnement
-            // 
-            this.radioButtonStationnement.AccessibleDescription = "Stationnement";
-            this.radioButtonStationnement.AutoSize = true;
-            this.radioButtonStationnement.Enabled = false;
-            this.radioButtonStationnement.Location = new System.Drawing.Point(63, 28);
-            this.radioButtonStationnement.Name = "radioButtonStationnement";
-            this.radioButtonStationnement.Size = new System.Drawing.Size(93, 17);
-            this.radioButtonStationnement.TabIndex = 73;
-            this.radioButtonStationnement.Text = "Stationnement";
-            this.radioButtonStationnement.UseVisualStyleBackColor = true;
-            this.radioButtonStationnement.CheckedChanged += new System.EventHandler(this.radioButtonStationnement_CheckedChanged);
             // 
             // radioButtonLocal
             // 
@@ -234,54 +351,69 @@
             this.radioButtonLocal.TabStop = true;
             this.radioButtonLocal.Text = "Local";
             this.radioButtonLocal.UseVisualStyleBackColor = true;
-            this.radioButtonLocal.CheckedChanged += new System.EventHandler(this.radioButtonLocal_CheckedChanged);
+            this.radioButtonLocal.CheckedChanged += new System.EventHandler(this.TypeEspace_ValueChanged);
             // 
-            // lblPrix
+            // txtTvq
             // 
-            this.lblPrix.AutoSize = true;
-            this.lblPrix.Location = new System.Drawing.Point(97, 90);
-            this.lblPrix.Name = "lblPrix";
-            this.lblPrix.Size = new System.Drawing.Size(24, 13);
-            this.lblPrix.TabIndex = 71;
-            this.lblPrix.Text = "Prix";
+            this.txtTvq.Enabled = false;
+            this.txtTvq.Location = new System.Drawing.Point(6, 164);
+            this.txtTvq.Name = "txtTvq";
+            this.txtTvq.Size = new System.Drawing.Size(46, 20);
+            this.txtTvq.TabIndex = 75;
             // 
-            // txtPrix
+            // radioButtonStationnement
             // 
-            this.txtPrix.Enabled = false;
-            this.txtPrix.Location = new System.Drawing.Point(6, 87);
-            this.txtPrix.Name = "txtPrix";
-            this.txtPrix.Size = new System.Drawing.Size(85, 20);
-            this.txtPrix.TabIndex = 70;
-            this.txtPrix.TextChanged += new System.EventHandler(this.txtPrix_TextChanged);
+            this.radioButtonStationnement.AccessibleDescription = "Stationnement";
+            this.radioButtonStationnement.AutoSize = true;
+            this.radioButtonStationnement.Enabled = false;
+            this.radioButtonStationnement.Location = new System.Drawing.Point(63, 28);
+            this.radioButtonStationnement.Name = "radioButtonStationnement";
+            this.radioButtonStationnement.Size = new System.Drawing.Size(93, 17);
+            this.radioButtonStationnement.TabIndex = 73;
+            this.radioButtonStationnement.Text = "Stationnement";
+            this.radioButtonStationnement.UseVisualStyleBackColor = true;
+            this.radioButtonStationnement.CheckedChanged += new System.EventHandler(this.TypeEspace_ValueChanged);
             // 
-            // chkBoxCreerTypeEspace
+            // txtTps
             // 
-            this.chkBoxCreerTypeEspace.AutoSize = true;
-            this.chkBoxCreerTypeEspace.Location = new System.Drawing.Point(15, 100);
-            this.chkBoxCreerTypeEspace.Name = "chkBoxCreerTypeEspace";
-            this.chkBoxCreerTypeEspace.Size = new System.Drawing.Size(180, 17);
-            this.chkBoxCreerTypeEspace.TabIndex = 69;
-            this.chkBoxCreerTypeEspace.Text = "Créer un nouveau type d\'espace";
-            this.chkBoxCreerTypeEspace.UseVisualStyleBackColor = true;
-            this.chkBoxCreerTypeEspace.CheckedChanged += new System.EventHandler(this.chkBoxCreerTypeEspace_CheckedChanged);
+            this.txtTps.Enabled = false;
+            this.txtTps.Location = new System.Drawing.Point(6, 139);
+            this.txtTps.Name = "txtTps";
+            this.txtTps.Size = new System.Drawing.Size(46, 20);
+            this.txtTps.TabIndex = 74;
             // 
-            // lblDescription
+            // groupBoxAjoutLocal
             // 
-            this.lblDescription.AutoSize = true;
-            this.lblDescription.Location = new System.Drawing.Point(183, 215);
-            this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(60, 13);
-            this.lblDescription.TabIndex = 68;
-            this.lblDescription.Text = "Description";
+            this.groupBoxAjoutLocal.Controls.Add(this.txtNoLocal);
+            this.groupBoxAjoutLocal.Controls.Add(this.lblNoLocal);
+            this.groupBoxAjoutLocal.Controls.Add(this.chkBoxDisponible);
+            this.groupBoxAjoutLocal.Controls.Add(this.btnLocalOk);
+            this.groupBoxAjoutLocal.Controls.Add(this.btnLocalAppliquer);
+            this.groupBoxAjoutLocal.Controls.Add(this.btnLocalAnnuler);
+            this.groupBoxAjoutLocal.Location = new System.Drawing.Point(532, 334);
+            this.groupBoxAjoutLocal.Name = "groupBoxAjoutLocal";
+            this.groupBoxAjoutLocal.Size = new System.Drawing.Size(296, 156);
+            this.groupBoxAjoutLocal.TabIndex = 82;
+            this.groupBoxAjoutLocal.TabStop = false;
+            this.groupBoxAjoutLocal.Text = "Création d\'un local";
+            this.groupBoxAjoutLocal.Visible = false;
             // 
-            // txtDescription
+            // txtNoLocal
             // 
-            this.txtDescription.Enabled = false;
-            this.txtDescription.Location = new System.Drawing.Point(6, 190);
-            this.txtDescription.Multiline = true;
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(171, 65);
-            this.txtDescription.TabIndex = 67;
+            this.txtNoLocal.Location = new System.Drawing.Point(6, 51);
+            this.txtNoLocal.Name = "txtNoLocal";
+            this.txtNoLocal.Size = new System.Drawing.Size(54, 20);
+            this.txtNoLocal.TabIndex = 62;
+            this.txtNoLocal.TextChanged += new System.EventHandler(this.txtNoLocal_TextChanged);
+            // 
+            // lblNoLocal
+            // 
+            this.lblNoLocal.AutoSize = true;
+            this.lblNoLocal.Location = new System.Drawing.Point(66, 51);
+            this.lblNoLocal.Name = "lblNoLocal";
+            this.lblNoLocal.Size = new System.Drawing.Size(84, 13);
+            this.lblNoLocal.TabIndex = 63;
+            this.lblNoLocal.Text = "Numéro du local";
             // 
             // chkBoxDisponible
             // 
@@ -296,6 +428,47 @@
             this.chkBoxDisponible.Text = "Disponible";
             this.chkBoxDisponible.UseVisualStyleBackColor = false;
             this.chkBoxDisponible.CheckedChanged += new System.EventHandler(this.chkBoxDisponible_CheckedChanged);
+            // 
+            // btnLocalOk
+            // 
+            this.btnLocalOk.Location = new System.Drawing.Point(6, 119);
+            this.btnLocalOk.Name = "btnLocalOk";
+            this.btnLocalOk.Size = new System.Drawing.Size(85, 23);
+            this.btnLocalOk.TabIndex = 51;
+            this.btnLocalOk.Text = "OK";
+            this.btnLocalOk.UseVisualStyleBackColor = true;
+            this.btnLocalOk.Click += new System.EventHandler(this.btnLocalOk_Click);
+            // 
+            // btnLocalAppliquer
+            // 
+            this.btnLocalAppliquer.Location = new System.Drawing.Point(188, 119);
+            this.btnLocalAppliquer.Name = "btnLocalAppliquer";
+            this.btnLocalAppliquer.Size = new System.Drawing.Size(85, 23);
+            this.btnLocalAppliquer.TabIndex = 49;
+            this.btnLocalAppliquer.Text = "Appliquer";
+            this.btnLocalAppliquer.UseVisualStyleBackColor = true;
+            this.btnLocalAppliquer.Click += new System.EventHandler(this.btnLocalAppliquer_Click);
+            // 
+            // btnLocalAnnuler
+            // 
+            this.btnLocalAnnuler.Location = new System.Drawing.Point(97, 119);
+            this.btnLocalAnnuler.Name = "btnLocalAnnuler";
+            this.btnLocalAnnuler.Size = new System.Drawing.Size(85, 23);
+            this.btnLocalAnnuler.TabIndex = 50;
+            this.btnLocalAnnuler.Text = "Annuler";
+            this.btnLocalAnnuler.UseVisualStyleBackColor = true;
+            this.btnLocalAnnuler.Click += new System.EventHandler(this.btnLocalAnnuler_Click);
+            // 
+            // chkBoxCreerTypeEspace
+            // 
+            this.chkBoxCreerTypeEspace.AutoSize = true;
+            this.chkBoxCreerTypeEspace.Location = new System.Drawing.Point(15, 100);
+            this.chkBoxCreerTypeEspace.Name = "chkBoxCreerTypeEspace";
+            this.chkBoxCreerTypeEspace.Size = new System.Drawing.Size(180, 17);
+            this.chkBoxCreerTypeEspace.TabIndex = 69;
+            this.chkBoxCreerTypeEspace.Text = "Créer un nouveau type d\'espace";
+            this.chkBoxCreerTypeEspace.UseVisualStyleBackColor = true;
+            this.chkBoxCreerTypeEspace.CheckedChanged += new System.EventHandler(this.chkBoxCreerTypeEspace_CheckedChanged);
             // 
             // lblBatiment
             // 
@@ -315,57 +488,15 @@
             this.cmbBatiment.Size = new System.Drawing.Size(171, 21);
             this.cmbBatiment.TabIndex = 64;
             // 
-            // lblNoLocal
+            // listBoxLocal
             // 
-            this.lblNoLocal.AutoSize = true;
-            this.lblNoLocal.Location = new System.Drawing.Point(66, 51);
-            this.lblNoLocal.Name = "lblNoLocal";
-            this.lblNoLocal.Size = new System.Drawing.Size(84, 13);
-            this.lblNoLocal.TabIndex = 63;
-            this.lblNoLocal.Text = "Numéro du local";
-            // 
-            // txtNoLocal
-            // 
-            this.txtNoLocal.Location = new System.Drawing.Point(6, 51);
-            this.txtNoLocal.Name = "txtNoLocal";
-            this.txtNoLocal.Size = new System.Drawing.Size(54, 20);
-            this.txtNoLocal.TabIndex = 62;
-            // 
-            // lblGrandeur
-            // 
-            this.lblGrandeur.AutoSize = true;
-            this.lblGrandeur.Location = new System.Drawing.Point(96, 64);
-            this.lblGrandeur.Name = "lblGrandeur";
-            this.lblGrandeur.Size = new System.Drawing.Size(91, 13);
-            this.lblGrandeur.TabIndex = 61;
-            this.lblGrandeur.Text = "Grandeur du local";
-            // 
-            // lblX
-            // 
-            this.lblX.AutoSize = true;
-            this.lblX.Location = new System.Drawing.Point(38, 64);
-            this.lblX.Name = "lblX";
-            this.lblX.Size = new System.Drawing.Size(22, 13);
-            this.lblX.TabIndex = 60;
-            this.lblX.Text = "par";
-            // 
-            // txtLongueur
-            // 
-            this.txtLongueur.Enabled = false;
-            this.txtLongueur.Location = new System.Drawing.Point(61, 61);
-            this.txtLongueur.Name = "txtLongueur";
-            this.txtLongueur.Size = new System.Drawing.Size(29, 20);
-            this.txtLongueur.TabIndex = 59;
-            this.txtLongueur.TextChanged += new System.EventHandler(this.txtLonguer_TextChanged);
-            // 
-            // txtLargeur
-            // 
-            this.txtLargeur.Enabled = false;
-            this.txtLargeur.Location = new System.Drawing.Point(6, 61);
-            this.txtLargeur.Name = "txtLargeur";
-            this.txtLargeur.Size = new System.Drawing.Size(29, 20);
-            this.txtLargeur.TabIndex = 58;
-            this.txtLargeur.TextChanged += new System.EventHandler(this.txtLargeur_TextChanged);
+            this.listBoxLocal.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.listBoxLocal.FormattingEnabled = true;
+            this.listBoxLocal.Location = new System.Drawing.Point(15, 146);
+            this.listBoxLocal.Name = "listBoxLocal";
+            this.listBoxLocal.Size = new System.Drawing.Size(254, 342);
+            this.listBoxLocal.TabIndex = 56;
+            this.listBoxLocal.SelectedIndexChanged += new System.EventHandler(this.listBoxLocal_SelectedIndexChanged);
             // 
             // groupBoxInfoEspace
             // 
@@ -375,16 +506,6 @@
             this.groupBoxInfoEspace.TabIndex = 57;
             this.groupBoxInfoEspace.TabStop = false;
             this.groupBoxInfoEspace.Text = "Info du local!";
-            // 
-            // listBoxLocal
-            // 
-            this.listBoxLocal.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.listBoxLocal.FormattingEnabled = true;
-            this.listBoxLocal.Location = new System.Drawing.Point(506, 12);
-            this.listBoxLocal.Name = "listBoxLocal";
-            this.listBoxLocal.Size = new System.Drawing.Size(104, 472);
-            this.listBoxLocal.TabIndex = 56;
-            this.listBoxLocal.SelectedIndexChanged += new System.EventHandler(this.listBoxLocal_SelectedIndexChanged);
             // 
             // lblTypeEspace
             // 
@@ -438,39 +559,12 @@
             this.cmbSite.Size = new System.Drawing.Size(171, 21);
             this.cmbSite.TabIndex = 52;
             this.cmbSite.ValueMember = "SiteId";
+            this.cmbSite.SelectedIndexChanged += new System.EventHandler(this.cmbSite_SelectedIndexChanged);
             // 
             // siteBindingSource
             // 
             this.siteBindingSource.DataMember = "Site";
             this.siteBindingSource.DataSource = this.dataSetVille;
-            // 
-            // btnOk
-            // 
-            this.btnOk.Location = new System.Drawing.Point(6, 119);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(85, 23);
-            this.btnOk.TabIndex = 51;
-            this.btnOk.Text = "OK";
-            this.btnOk.UseVisualStyleBackColor = true;
-            // 
-            // btnAnnuler
-            // 
-            this.btnAnnuler.Location = new System.Drawing.Point(97, 119);
-            this.btnAnnuler.Name = "btnAnnuler";
-            this.btnAnnuler.Size = new System.Drawing.Size(85, 23);
-            this.btnAnnuler.TabIndex = 50;
-            this.btnAnnuler.Text = "Annuler";
-            this.btnAnnuler.UseVisualStyleBackColor = true;
-            // 
-            // btnAppliquer
-            // 
-            this.btnAppliquer.Location = new System.Drawing.Point(188, 119);
-            this.btnAppliquer.Name = "btnAppliquer";
-            this.btnAppliquer.Size = new System.Drawing.Size(85, 23);
-            this.btnAppliquer.TabIndex = 49;
-            this.btnAppliquer.Text = "Appliquer";
-            this.btnAppliquer.UseVisualStyleBackColor = true;
-            this.btnAppliquer.Click += new System.EventHandler(this.btnAppliquer_Click);
             // 
             // typeEspaceBindingSource
             // 
@@ -484,91 +578,6 @@
             // typeEspaceTableAdapter
             // 
             this.typeEspaceTableAdapter.ClearBeforeFill = true;
-            // 
-            // groupBoxAjoutLocal
-            // 
-            this.groupBoxAjoutLocal.Controls.Add(this.txtNoLocal);
-            this.groupBoxAjoutLocal.Controls.Add(this.lblNoLocal);
-            this.groupBoxAjoutLocal.Controls.Add(this.chkBoxDisponible);
-            this.groupBoxAjoutLocal.Controls.Add(this.btnOk);
-            this.groupBoxAjoutLocal.Controls.Add(this.btnAppliquer);
-            this.groupBoxAjoutLocal.Controls.Add(this.btnAnnuler);
-            this.groupBoxAjoutLocal.Location = new System.Drawing.Point(314, 167);
-            this.groupBoxAjoutLocal.Name = "groupBoxAjoutLocal";
-            this.groupBoxAjoutLocal.Size = new System.Drawing.Size(296, 156);
-            this.groupBoxAjoutLocal.TabIndex = 82;
-            this.groupBoxAjoutLocal.TabStop = false;
-            this.groupBoxAjoutLocal.Text = "Création d\'un local";
-            this.groupBoxAjoutLocal.Visible = false;
-            // 
-            // gbCreationTypeEspace
-            // 
-            this.gbCreationTypeEspace.Controls.Add(this.button1);
-            this.gbCreationTypeEspace.Controls.Add(this.button2);
-            this.gbCreationTypeEspace.Controls.Add(this.button3);
-            this.gbCreationTypeEspace.Controls.Add(this.txtLargeur);
-            this.gbCreationTypeEspace.Controls.Add(this.txtLongueur);
-            this.gbCreationTypeEspace.Controls.Add(this.lblX);
-            this.gbCreationTypeEspace.Controls.Add(this.txtMontantTvq);
-            this.gbCreationTypeEspace.Controls.Add(this.lblGrandeur);
-            this.gbCreationTypeEspace.Controls.Add(this.txtMontantTps);
-            this.gbCreationTypeEspace.Controls.Add(this.txtDescription);
-            this.gbCreationTypeEspace.Controls.Add(this.lblMontantAvTaxe);
-            this.gbCreationTypeEspace.Controls.Add(this.lblDescription);
-            this.gbCreationTypeEspace.Controls.Add(this.txtMontantAvTaxe);
-            this.gbCreationTypeEspace.Controls.Add(this.txtPrix);
-            this.gbCreationTypeEspace.Controls.Add(this.lblTvq);
-            this.gbCreationTypeEspace.Controls.Add(this.lblPrix);
-            this.gbCreationTypeEspace.Controls.Add(this.lblTps);
-            this.gbCreationTypeEspace.Controls.Add(this.radioButtonLocal);
-            this.gbCreationTypeEspace.Controls.Add(this.txtTvq);
-            this.gbCreationTypeEspace.Controls.Add(this.radioButtonStationnement);
-            this.gbCreationTypeEspace.Controls.Add(this.txtTps);
-            this.gbCreationTypeEspace.Location = new System.Drawing.Point(15, 157);
-            this.gbCreationTypeEspace.Name = "gbCreationTypeEspace";
-            this.gbCreationTypeEspace.Size = new System.Drawing.Size(296, 308);
-            this.gbCreationTypeEspace.TabIndex = 84;
-            this.gbCreationTypeEspace.TabStop = false;
-            this.gbCreationTypeEspace.Text = "Création d\'un type d\'espace";
-            this.gbCreationTypeEspace.Visible = false;
-            // 
-            // chkBoxCreerLocal
-            // 
-            this.chkBoxCreerLocal.AutoSize = true;
-            this.chkBoxCreerLocal.Location = new System.Drawing.Point(15, 123);
-            this.chkBoxCreerLocal.Name = "chkBoxCreerLocal";
-            this.chkBoxCreerLocal.Size = new System.Drawing.Size(136, 17);
-            this.chkBoxCreerLocal.TabIndex = 85;
-            this.chkBoxCreerLocal.Text = "Créer un nouveau local";
-            this.chkBoxCreerLocal.UseVisualStyleBackColor = true;
-            this.chkBoxCreerLocal.CheckedChanged += new System.EventHandler(this.chkBoxCreerLocal_CheckedChanged);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(6, 261);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(85, 23);
-            this.button1.TabIndex = 84;
-            this.button1.Text = "OK";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(188, 261);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(85, 23);
-            this.button2.TabIndex = 82;
-            this.button2.Text = "Appliquer";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(97, 261);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(85, 23);
-            this.button3.TabIndex = 83;
-            this.button3.Text = "Annuler";
-            this.button3.UseVisualStyleBackColor = true;
             // 
             // FormAjoutEspace
             // 
@@ -584,14 +593,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).EndInit();
             this.groupBoxAjoutEspace.ResumeLayout(false);
             this.groupBoxAjoutEspace.PerformLayout();
+            this.gbCreationTypeEspace.ResumeLayout(false);
+            this.gbCreationTypeEspace.PerformLayout();
+            this.groupBoxAjoutLocal.ResumeLayout(false);
+            this.groupBoxAjoutLocal.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.typeEspaceBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetVille)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.siteBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.typeEspaceBindingSource)).EndInit();
-            this.groupBoxAjoutLocal.ResumeLayout(false);
-            this.groupBoxAjoutLocal.PerformLayout();
-            this.gbCreationTypeEspace.ResumeLayout(false);
-            this.gbCreationTypeEspace.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -605,9 +614,9 @@
         private System.Windows.Forms.BindingSource emplacementBindingSource1;
         private DataSetIDMTableAdapters.EmplacementTableAdapter emplacementTableAdapter;
         private System.Windows.Forms.GroupBox groupBoxAjoutEspace;
-        private System.Windows.Forms.Button btnOk;
-        private System.Windows.Forms.Button btnAnnuler;
-        private System.Windows.Forms.Button btnAppliquer;
+        private System.Windows.Forms.Button btnLocalOk;
+        private System.Windows.Forms.Button btnLocalAnnuler;
+        private System.Windows.Forms.Button btnLocalAppliquer;
         private System.Windows.Forms.ListBox listBoxLocal;
         private System.Windows.Forms.Label lblTypeEspace;
         private System.Windows.Forms.Label lblSite;
@@ -647,8 +656,8 @@
         private System.Windows.Forms.GroupBox groupBoxAjoutLocal;
         private System.Windows.Forms.GroupBox gbCreationTypeEspace;
         private System.Windows.Forms.CheckBox chkBoxCreerLocal;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnTypeOk;
+        private System.Windows.Forms.Button btnTypeAppliquer;
+        private System.Windows.Forms.Button btnTypeAnnuler;
     }
 }

@@ -12,17 +12,34 @@ using System.Data.Entity;
 using IDM2.Controleur;
 using IDM2.Vue;
 using IDM2.BaseDonnee;
-
+using System.Windows.Input;
+using System.Net;
+using System.Text.RegularExpressions;
+using System.IO;
+using System.Net.Cache;
 
 namespace IDM2
 {
+    /// <summary>
+    /// AUTEUR: J-R
+    /// DESCRIPTION: Vue de la Form principal du projet
+    /// </summary>
     public partial class FormPrincipal : Form
     {
+        /// <summary>
+        /// AUTEUR: J-R
+        /// DESCRIPTION: Représente l'information d'un client ainsi que le nom de cette information
+        /// </summary>
         private class InfoClient
         {
             public string Info { get; set; }
             public string NomInfo { get; set; }
 
+            /// <summary>
+            /// Constructeur InfoClient
+            /// </summary>
+            /// <param name="nomInfo">Nom de l'information</param>
+            /// <param name="info">Donnée de l'information</param>
             public InfoClient(string nomInfo, string info)
             {
                 Info = info;
@@ -30,44 +47,33 @@ namespace IDM2
             }
         }
 
-
-        private CoClient _controllerClient;
-        private CoCodeElectronique _controllerCode;
-        private CoTelephone _controllerTelephone;
-        private CoVille _controllerVille;
-        private CoSite _controllerSite;
-
-        private FormTaxes _formTaxe;
+        // CHAMPS
         private bool _afficherTousClients;
         private GroupBox _dossierClient;
+        private GroupBox _gbSectionAdmin;
         private Client _clientSelectionner;
+        private List<Client> _lstRechercheClient = new List<Client>();
+        private List<Espace> _lstRechercheEspace = new List<Espace>();
+        private Test _test;
 
+        /// <summary>
+        /// Constructeur de Form
+        /// </summary>
         public FormPrincipal()
         {
             DonneeMemoire.Initialiser();
-            _formTaxe = new FormTaxes();
 
             InitializeComponent();
 
-            _controllerCode = new CoCodeElectronique();
-            _controllerClient = new CoClient();
-            _controllerTelephone = new CoTelephone();
-            _controllerVille = new CoVille();
-            _controllerSite = new CoSite();
-
             _afficherTousClients = false;
 
-            pnlSolde.BackColor = Color.Gray;
+            FormTest ft = new FormTest();
+            _test = new Test();
+            this.Text = this.Text + _test.Date.ToString();
+            ft.Show();
         }
 
-
-        private List<Client> _resultatRecherche = new List<Client>();
-
-        private void tabControlIDM_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            gBoxSearchDoorResult.Visible = false;
-            //gBoxCustResult.Visible = false;
-        }
+        #region FormEvent
 
         private void formPrincipal_Load(object sender, EventArgs e)
         {
@@ -75,246 +81,103 @@ namespace IDM2
             this.villeTableAdapter.Fill(this.dataSetVille.Ville);
             // TODO: cette ligne de code charge les données dans la table 'dataSetIDM.Porte'. Vous pouvez la déplacer ou la supprimer selon vos besoins.
             //this.porteTableAdapter.Fill(this.dataSetIDM.Porte);
-
+            FormTest ft = new FormTest();
+            ft.Show();
         }
 
-        private void listBoxResultat_SelectedIndexChanged(object sender, EventArgs e)
+        private void tabControlIDM_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_dossierClient != null)
-                FermerDossierClient();
+            btnFermerDossier.PerformClick();
 
-            
-            if (listBoxResultat.SelectedItems.Count == 1)
-            {
-                _clientSelectionner = _resultatRecherche[listBoxResultat.SelectedIndex];
-                OuvrirDossierClient(_clientSelectionner);
-            }
-        }
-
-        private void OuvrirDossierClient(Client client)
-        {
-            btnModifierClient.Enabled = true;
-            btnEffectuerPaiement.Enabled = true;
-            btnVoirSoldeClient.Enabled = true;
-            btnFermerDossier.Enabled = true;
-            btnCreerContrat.Enabled = true;
-
-
-            DossierClient ds = new DossierClient(client);
-            _dossierClient = ds.ObtenirVueDossierClient();
-
-            _dossierClient.Parent = groupBoxDossierClient;
-            _dossierClient.Location = new Point(0, 0);
-
-            //List<InfoClient> infoClient = new List<InfoClient>();
-            //Telephone[] telsClient = _controllerTelephone.ObtenirTelephones(client);
-            //pnlSolde.BackColor = Color.Green;
-
-
-            //if (client.Prenom != null)
-            //    infoClient.Add(new InfoClient("Nom", client.Prenom + " " + client.Nom));
-            //else
-            //    infoClient.Add(new InfoClient("Nom", client.Nom));
-
-            //if (client.DateEntree != null)
-            //    infoClient.Add(new InfoClient("DateInscription", "Date d'inscription: " + client.DateEntree.Value.Day + " " + Tools.GetMonth(client.DateEntree.Value.Month) + " " + client.DateEntree.Value.Year));
-
-            //if (client.Adresse != null && client.VilleId != null)
-            //    infoClient.Add(new InfoClient("Adresse", client.Adresse + " " + _controllerVille.ObtenirVille((int)client.VilleId).Ville1));
-
-            //for (int i = 0; i < telsClient.Length; i++)
-            //    infoClient.Add(new InfoClient("Telephone" + telsClient[i].Description, telsClient[i].NoTel + "  ( " + telsClient[i].Description + ": " + telsClient[i].Contact + " )"));
-
-            //if (client.Commentaire != null)
-            //    infoClient.Add(new InfoClient("Commentaire", "Commentaire: " + client.Commentaire));
-
-            //// Ajouter methode de paiement
-
-            //int x = 17;
-            //int y = 2;
-
-            //for (int i = 0; i < infoClient.Count; i++)
-            //{
-            //    Label label = new Label();
-            //    label.Location = new System.Drawing.Point(x, y += 30);
-            //    label.Parent = groupBoxDossierClient;
-            //    label.Name = "lbl" + infoClient[i].NomInfo;
-            //    label.Text = infoClient[i].Info;
-            //    label.Size = new System.Drawing.Size(infoClient[i].Info.Length * 6, 13);
-            //    groupBoxDossierClient.Controls.Add(label);
-            //    _labels.Add(label);
-            //}
-        }
-
-        private void FermerDossierClient()
-        {
-            groupBoxDossierClient.Controls.Remove(_dossierClient);
-
-            //_labels.Clear();
-
-            btnModifierClient.Enabled = false;
-            btnVoirSoldeClient.Enabled = false;
-            btnEffectuerPaiement.Enabled = false;
-            btnFermerDossier.Enabled = false;
-            btnCreerContrat.Enabled = false;
-
-            pnlSolde.BackColor = Color.Gray;
-        }
-
-
-
-        #region ButtonEvent
-
-
-        private void btnCreerContrat_Click(object sender, EventArgs e)
-        {
-            FormContrat f = new FormContrat(_clientSelectionner);
-            f.Show();
-        }
-
-        private void buttonNewPlace_Click(object sender, EventArgs e)
-        {
-            gBoxNewPlace.Visible = true;
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            gBoxNewPayementMethod.Visible = true;
-        }
-
-        private void buttonCloseNewPlace_Click(object sender, EventArgs e)
-        {
-            gBoxNewPlace.Visible = false;
-        }
-
-        private void buttonCloseNewPaiement_Click(object sender, EventArgs e)
-        {
-            gBoxNewPayementMethod.Visible = false;
-        }
-
-        private void btnNewPayementMethod_Click(object sender, EventArgs e)
-        {
-            gBoxNewPayementMethod.Visible = true;
-        }
-
-        private void btnSaveNewPayementMethod_Click(object sender, EventArgs e)
-        {
+            //gBoxCustResult.Visible = false;
         }
 
         private void formAjoutClient_FormClosed(object sender, EventArgs e)
         {
             btnAfficherTousClients_Click(sender, e);
-        }
-
-        private void buttonAjoutClient_Click(object sender, EventArgs e)
-        {
-            AjoutClient formAjoutClient = new AjoutClient();
-            formAjoutClient.AccessibleName = "INSERT";
-            formAjoutClient.Show();
-            formAjoutClient.FormClosed += new FormClosedEventHandler(formAjoutClient_FormClosed);
-
-            //Control[] c = formAjoutClient.Controls[0].Controls.Find("btnAddNewCustomer", false);
-            //c[0].Text = "Ajouter le client";
-            //c[0].AccessibleName = "INSERT";
-
-            if (_afficherTousClients)
-                btnAfficherTousClients_Click(sender, e);
-        }
-
-        private void buttonModifierClient_Click(object sender, EventArgs e)
-        {
-            AjoutClient formModifClient = new AjoutClient();
-
-            formModifClient.Text = "Modifier le client"; // Ajouter le nom du client
-            Control[] c = formModifClient.Controls[0].Controls.Find("btnAddNewCustomer", false);
-
-            c[0].Text = "Sauvegarder";
-            formModifClient.AccessibleName = "UPDATE";
-
-
-            formModifClient.Show();
-            formModifClient.AjouterDonneeClient(_clientSelectionner);
-            formModifClient.ClientOrigine = _clientSelectionner;
-        }
-
-        private void buttonAjouterPorte_Click(object sender, EventArgs e)
-        {
-            FormAjoutEspace formAjoutPorte = new FormAjoutEspace();
-            formAjoutPorte.Show();
-        }
-
-        private void buttonRecherchePorte_Click(object sender, EventArgs e)
-        {
-            gBoxSearchDoorResult.Visible = true;
-        }
-
-        private void btnCustClose_Click(object sender, EventArgs e)
-        {
-            //gBoxCustResult.Visible = false;
-        }
-
-        private void btnEffectuerPaiement_Click(object sender, EventArgs e)
-        {
-            FormPaiement fp = new FormPaiement(_clientSelectionner);
-            fp.Show();
-        }
-
-        private void btnModifierTax_Click(object sender, EventArgs e)
-        {
-            FormTaxes f = new FormTaxes();
-            f.Show();
-            //_formTaxe.Show();
-        }
-
-        private void btnFermerDossier_Click(object sender, EventArgs e)
-        {
-            FermerDossierClient();
-        }
-
-        private void btnRechercher_Click(object sender, EventArgs e)
-        {
-            _afficherTousClients = false;
-            _resultatRecherche.Clear();
-            listBoxResultat.Items.Clear();
-
-            if (rBtnCustSpecificSearchDoor.Checked)
-            {
-
-            }
-
-            else if (rBtnCustSpecificSearchLastName.Checked)
-            {
-                _resultatRecherche.AddRange(_controllerClient.RechercherClientNom(txtFindCustSpecificSearch.Text));
-            }
-
-
-            else if (rBtnCustSpecificSearchPhone.Checked)
-            {
-                _resultatRecherche.AddRange(_controllerClient.RechercherClientTelephone(txtFindCustSpecificSearch.Text));
-            }
-
-            for (int i = 0; i < _resultatRecherche.Count; i++)
-                listBoxResultat.Items.Add(_resultatRecherche[i].Prenom + " " + _resultatRecherche[i].Nom);
-
-            //gBoxCustResult.Visible = false;
+            btnFermerDossier.PerformClick();
         }
 
         #endregion
 
+
+
+
+        #region OngletClients
+        //********************************** OngletClients **********************************
+        #region ButtonsEvents
+        /// <summary>
+        /// Affiche le prenom et nom de tous les clients dans une liste
+        /// </summary>
         private void btnAfficherTousClients_Click(object sender, EventArgs e)
         {
+            btnFermerDossier.PerformClick();
             _afficherTousClients = true;
-            _resultatRecherche.Clear();
+            _lstRechercheClient.Clear();
             listBoxResultat.Items.Clear();
 
-            _resultatRecherche.AddRange(_controllerClient.ObtenirTousLesClients());
+            _lstRechercheClient.AddRange(Controller.Client.ObtenirTousLesClients());
 
-            for (int i = 0; i < _resultatRecherche.Count; i++)
-                listBoxResultat.Items.Add(_resultatRecherche[i].Prenom + " " + _resultatRecherche[i].Nom);
+            for (int i = 0; i < _lstRechercheClient.Count; i++)
+                listBoxResultat.Items.Add(_lstRechercheClient[i].Prenom + " " + _lstRechercheClient[i].Nom);
         }
 
+        /// <summary>
+        /// Affiche le no, le type et le site de tous les espaces dans une liste
+        /// </summary>
+        private void btnAfficherEspaces_Click(object sender, EventArgs e)
+        {
+            _lstRechercheEspace.Clear();
+            BaseDonnee.DataSetVilleTableAdapters.DisponibiliteEspace_ClientTableAdapter t = new BaseDonnee.DataSetVilleTableAdapters.DisponibiliteEspace_ClientTableAdapter();
+            DataSetVille ds = new DataSetVille();
+
+            dataGridView1.DataSource = t.GetDataByStationnement();
+            //_lstRechercheEspace.AddRange(Controller.Espace.ObtenirTousEspaces());
+            //listBoxResultat.Items.Clear();
+
+            //for (int i = 0; i < _lstRechercheEspace.Count; i++)
+            //{
+            //    string typeLocal;
+            //    string site;
+            //    string disponible;
+            //    string nomClient;
+
+            //    if (Controller.TypeEspace.EstTypeLocal(_lstRechercheEspace[i].TypeEspaceId))
+            //        typeLocal = "local";
+            //    else
+            //        typeLocal = "stationnement";
+
+            //    site = Controller.Site.ObtenirSite(Controller.TypeEspace.ObtenirTypeEspace(_lstRechercheEspace[i].TypeEspaceId).SiteId).Alias;
+
+            //    if (_lstRechercheEspace[i].Disponible)
+            //    {
+
+            //        disponible = "disponible";
+            //        nomClient = "-";
+            //    }
+            //    else
+            //    {
+            //        disponible = "non disponible";
+
+            //        Contrat contratLocation = Controller.Contrat.ContratActifParEspace(_lstRechercheEspace[i]);
+            //        Client client = Controller.Client.RechercherClientParContrat(contratLocation.ContratId);
+
+            //        nomClient = client.Prenom + " " + client.Nom;
+            //    }
+
+            //    listBoxResultat.Items.Add(site + " " + disponible + " " + nomClient + " " + typeLocal);
+
+            //}
+        }
+
+        /// <summary>
+        /// Supprime le client sélectionné dans la liste de résultat
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSupprimerClient_Click(object sender, EventArgs e)
         {
+            btnFermerDossier.PerformClick();
             if (listBoxResultat.SelectedItems.Count == 1)
             {
                 DialogResult dg = MessageBox.Show("Êtes-vous sûre de vouloir supprimer définitivement le client " +
@@ -331,7 +194,7 @@ namespace IDM2
                         return;
                     else if (dg2 == DialogResult.Yes)
                     {
-                        _controllerClient.SupprimerClient(_clientSelectionner);
+                        Controller.Client.SupprimerClient(_clientSelectionner);
                         _clientSelectionner = null;
                         if (_afficherTousClients)
                             btnAfficherTousClients_Click(sender, e);
@@ -341,28 +204,267 @@ namespace IDM2
                 }
                 else return;
             }
+
+            if (_afficherTousClients)
+                btnAfficherTousClients.PerformClick();
         }
 
-        private Site ObtenirInfoSite()
+        /// <summary>
+        /// Affiche la Form permettant de créer un nouveau contrat
+        /// </summary>
+        private void btnCreerContrat_Click(object sender, EventArgs e)
         {
-            Site site = new Site();
-
-            site.Adresse = txtNouveauSiteAdresse.Text;
-            site.Alias = txtNouveauSiteNom.Text;
-            if (_controllerVille.ValiderVille(cmbNouveauSiteVille.Text))
-                site.VilleId = (int)cmbNouveauSiteVille.SelectedValue;
-            else
-                MessageBox.Show("Ville invalide");
-
-            return site;
-
+            FormContrat f = new FormContrat(_clientSelectionner);
+            f.Show();
         }
 
-        private void btnAppliquerNouveauSite_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Affiche la form permettant d'effectuer un paiement
+        /// </summary>
+        private void btnEffectuerPaiement_Click(object sender, EventArgs e)
         {
-            _controllerSite.AjouterSite(ObtenirInfoSite());
+            FormPaiement fp = new FormPaiement(_clientSelectionner);
+            fp.Show();
         }
 
+        /// <summary>
+        /// Affiche la form permettant d'ajouter un nouveau client
+        /// </summary>
+        private void buttonAjoutClient_Click(object sender, EventArgs e)
+        {
+            btnFermerDossier.PerformClick();
+
+            AjoutClient formAjoutClient = new AjoutClient(false);
+            formAjoutClient.AccessibleName = "INSERT";
+            formAjoutClient.Show();
+            formAjoutClient.FormClosed += new FormClosedEventHandler(formAjoutClient_FormClosed);
+
+            //Control[] c = formAjoutClient.Controls[0].Controls.Find("btnAddNewCustomer", false);
+            //c[0].Text = "Ajouter le client";
+            //c[0].AccessibleName = "INSERT";
+
+            if (_afficherTousClients)
+                btnAfficherTousClients_Click(sender, e);
+        }
+
+        /// <summary>
+        /// Affiche la forme permettant de modifier un client
+        /// </summary>
+        private void buttonModifierClient_Click(object sender, EventArgs e)
+        {
+            AjoutClient formModifClient = new AjoutClient(true);
+
+            formModifClient.Show();
+            formModifClient.AfficherDonneeClient(_clientSelectionner);
+            formModifClient.ClientOrigine = _clientSelectionner;
+            formModifClient.FormClosed += new FormClosedEventHandler(formAjoutClient_FormClosed);
+        }
+
+        /// <summary>
+        /// Ferme de dossier du client
+        /// </summary>
+        private void btnFermerDossier_Click(object sender, EventArgs e)
+        {
+            FermerDossierClient();
+        }
+
+        /// <summary>
+        /// Effectue une recherche de client selon les critères spécifiés par l'utilisateur
+        /// </summary>
+        private void btnRechercher_Click(object sender, EventArgs e)
+        {
+            _afficherTousClients = false;
+            _lstRechercheClient.Clear();
+            listBoxResultat.Items.Clear();
+
+            if (rBtnCustSpecificSearchDoor.Checked)
+            {
+
+            }
+
+            else if (rBtnCustSpecificSearchLastName.Checked)
+            {
+                _lstRechercheClient.AddRange(Controller.Client.RechercherClientNom(txtFindCustSpecificSearch.Text));
+            }
+
+
+            else if (rBtnCustSpecificSearchPhone.Checked)
+            {
+                _lstRechercheClient.AddRange(Controller.Client.RechercherClientTelephone(txtFindCustSpecificSearch.Text));
+            }
+
+            for (int i = 0; i < _lstRechercheClient.Count; i++)
+                listBoxResultat.Items.Add(_lstRechercheClient[i].Prenom + " " + _lstRechercheClient[i].Nom);
+
+            //gBoxCustResult.Visible = false;
+        }
+        #endregion
+
+        #region ListBoxEvent
+
+        private void listBoxResultat_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+                if (listBoxResultat.SelectedItem != null)
+                    btnSupprimerClient.PerformClick();
+        }
+
+        private void listBoxResultat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnFermerDossier.PerformClick();
+
+            if (_dossierClient != null)
+                FermerDossierClient();
+
+
+            if (listBoxResultat.SelectedItems.Count == 1)
+            {
+                _clientSelectionner = _lstRechercheClient[listBoxResultat.SelectedIndex];
+                OuvrirDossierClient(_clientSelectionner);
+
+
+            }
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Permet d'afficher les informations du client dans des labels
+        /// </summary>
+        /// <param name="client">client à affiché</param>
+        private void OuvrirDossierClient(Client client)
+        {
+            btnModifierClient.Visible = true;
+            btnModifierClient.Enabled = true;
+            
+            btnEffectuerPaiement.Visible = true;
+            btnEffectuerPaiement.Enabled = true;
+
+            btnVoirSoldeClient.Visible = true;
+            btnVoirSoldeClient.Enabled = true;
+
+            btnFermerDossier.Visible = true;
+            btnFermerDossier.Enabled = true;
+
+            btnCreerContrat.Visible = true;
+            btnCreerContrat.Enabled = true;
+
+            btnSupprimerClient.Visible = true;
+            btnSupprimerClient.Enabled = true;
+
+           // pnlSolde.Visible = true;
+
+            this.PerformLayout();
+
+            DossierClient ds = new DossierClient(client);
+            _dossierClient = ds.ObtenirVueDossierClient();
+
+            _dossierClient.Parent = groupBoxDossierClient;
+            _dossierClient.Location = new Point(0, 0);
+        }
+
+        /// <summary>
+        /// Retire les labels affichant les informations du client
+        /// </summary>
+        private void FermerDossierClient()
+        {
+            groupBoxDossierClient.Controls.Remove(_dossierClient);
+            btnModifierClient.Visible = false;
+            btnModifierClient.Enabled = false;
+
+            btnEffectuerPaiement.Visible = false;
+            btnEffectuerPaiement.Enabled = false;
+
+            btnVoirSoldeClient.Visible = false;
+            btnVoirSoldeClient.Enabled = false;
+
+            btnFermerDossier.Visible = false;
+            btnFermerDossier.Enabled = false;
+
+            btnCreerContrat.Visible = false;
+            btnCreerContrat.Enabled = false;
+
+            btnSupprimerClient.Visible = false;
+            btnSupprimerClient.Enabled = false;
+        }
+
+        //-------------------------------------------------------------------------------------
+        #endregion
+
+
+
+
+
+        #region OngletLocauxEtStationnements
+        //********************************** OngletLocauxEtStationnements **********************************
+        #region ButtonsEvents
+
+        private void btnCreerSite_Click(object sender, EventArgs e)
+        {
+            if (_gbSectionAdmin != null)
+                _gbSectionAdmin.Dispose();
+
+            VueAjoutSite v = new VueAjoutSite();
+            _gbSectionAdmin = v.ObtenirVue();
+            _gbSectionAdmin.Location = new Point(202, 12);
+            tabPageAdmin.Controls.Add(_gbSectionAdmin);
+            //v.FillData();
+        }
+
+        private void buttonAjouterPorte_Click(object sender, EventArgs e)
+        {
+            FormAjoutEspace formAjoutPorte = new FormAjoutEspace();
+            formAjoutPorte.Show();
+        }
+
+        #endregion
+
+        //-------------------------------------------------------------------------------------
+        #endregion
+
+
+
+
+
+        #region OngletSectionAdministrateur
+        //********************************** OngletSectionAdministrateur **********************************
+
+        #region ButtonsEvents
+
+        private void btnModifierTax_Click(object sender, EventArgs e)
+        {
+            if (_gbSectionAdmin != null)
+                _gbSectionAdmin.Dispose();
+
+            VueModifierTaxe v = new VueModifierTaxe();
+            _gbSectionAdmin = v.ObtenirVue();
+            _gbSectionAdmin.Location = new Point(202, 12);
+            tabPageAdmin.Controls.Add(_gbSectionAdmin);
+        }
+
+        private void btnNewPayementMethod_Click(object sender, EventArgs e)
+        {
+        }
+
+        #endregion
+
+        private void btnVoirSoldeClient_Click(object sender, EventArgs e)
+        {
+            FormSolde fs = new FormSolde(_clientSelectionner);
+            fs.Show();
+        }
+
+        private void btnGestionEspace_Click(object sender, EventArgs e)
+        {
+            FormAjoutEspace f = new FormAjoutEspace();
+            f.Show();
+        }
+
+
+
+        //-------------------------------------------------------------------------------------
+
+        #endregion
 
 
 

@@ -23,17 +23,15 @@ namespace IDM2.Vue
                 NomInfo = nomInfo;
             }
         }
-        private CoVue _controllerVue;
 
         public DossierEspace()
         {
-            _controllerVue = new CoVue();
         }
 
         public GroupBox ObtenirDossier(Local local)
         {
             List<InfoEspace> infoLocal = new List<InfoEspace>();
-            DossierLocalView dossierLocal = _controllerVue.ObtenirDossierLocalView(local.EspaceId);
+            DossiersLocalView dossierLocal = Controller.Vue.ObtenirDossierLocalView(local.EspaceId);
 
             infoLocal.Add(new InfoEspace("NoLocal", dossierLocal.NoLocal));
             infoLocal.Add(new InfoEspace("Disponible", dossierLocal.Disponible.ToString()));
@@ -50,7 +48,7 @@ namespace IDM2.Vue
         {
             //return GenererDossier(infoStationnement);
             List<InfoEspace> infoStationnement = new List<InfoEspace>();
-            DossierStationnementView dossierStationnement = _controllerVue.ObtenirDossierStationnementView(stationnement.EspaceId);
+            DossierStationnementView dossierStationnement = Controller.Vue.ObtenirDossierStationnementView(stationnement.EspaceId);
 
             infoStationnement.Add(new InfoEspace("NoLocal", dossierStationnement.NoStationnement));
             infoStationnement.Add(new InfoEspace("Disponible", dossierStationnement.Disponible.ToString()));

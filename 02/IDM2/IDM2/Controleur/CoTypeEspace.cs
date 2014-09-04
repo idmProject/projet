@@ -36,6 +36,11 @@ namespace IDM2.Controleur
            return _bd.TypeEspace.Find(id);
        }
 
+       public bool EstTypeLocal(int typeEspaceId)
+       {
+           return _bd.TypeEspace.Find(typeEspaceId).Description.Contains("Local");
+       }
+
 
     }
 }

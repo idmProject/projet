@@ -16,14 +16,6 @@ namespace IDM2
 {
     public partial class FormAjoutEspace : Form
     {
-        private bool _creerTypeEspace;
-        private CoTypeEspace _controllerTypeEspace;
-        private CoEspace _controllerEspace;
-        private CoTaxe _controllerTaxe;
-        private CoPaiement _controllerPaiement;
-        private CoStationnement _controllerStationnement;
-        private CoLocal _controllerLocal;
-        private CoVue _controllerVue;
         private TypeEspace _typeEspaceSelectionner;
         private List<Espace> _listEspaceAfficher;
 
@@ -33,35 +25,28 @@ namespace IDM2
         public FormAjoutEspace()
         {
             InitializeComponent();
-            _creerTypeEspace = false;
-            _controllerEspace = new CoEspace();
-            _controllerTypeEspace = new CoTypeEspace();
-            _controllerTaxe = new CoTaxe();
-            _controllerPaiement = new CoPaiement();
-            _controllerStationnement = new CoStationnement();
-            _controllerLocal = new CoLocal();
-            _controllerVue = new CoVue();
 
             _dernierEspaceIdAjouter = 0;
             _dernierTypeEspaceIdAjouter = 0;
             _typeEspaceSelectionner = null;
             _listEspaceAfficher = new List<Espace>();
 
-            if (_controllerTypeEspace.ObtenirNombreTypeEspace() == 0)
+            if (Controller.TypeEspace.ObtenirNombreTypeEspace() == 0)
                 chkBoxCreerLocal.Visible = false;
         }
 
+        private void TypeEspace_ValueChanged(object sender, EventArgs e)
+        {
+            btnTypeAppliquer.Enabled = true;
+            ChangerDescription();
+        }
 
         private void AjoutPorte_Load(object sender, EventArgs e)
         {
-            // TODO: cette ligne de code charge les données dans la table 'dataSetVille.TypeEspace'. Vous pouvez la déplacer ou la supprimer selon vos besoins.
-            this.typeEspaceTableAdapter.Fill(this.dataSetVille.TypeEspace);
-            // TODO: cette ligne de code charge les données dans la table 'dataSetVille.Site'. Vous pouvez la déplacer ou la supprimer selon vos besoins.
             this.siteTableAdapter.Fill(this.dataSetVille.Site);
-            // TODO: cette ligne de code charge les données dans la table 'dataSetIDM.Emplacement'. Vous pouvez la déplacer ou la supprimer selon vos besoins.
-            //this.emplacementTableAdapter.Fill(this.dataSetIDM.Emplacement);
-            // TODO: cette ligne de code charge les données dans la table 'dataSetIDM.Client'. Vous pouvez la déplacer ou la supprimer selon vos besoins.
-            //this.clientTableAdapter.Fill(this.dataSetIDM.Client);
+
+            if (cmbSite.SelectedValue != null)
+                FillDataBySite();
 
             if (cmbTypeEspace.Items.Count == 0)
             {
@@ -71,52 +56,18 @@ namespace IDM2
             }
             else
             {
-                TypeEspace typeEspace = _controllerTypeEspace.ObtenirTypeEspace((int)cmbTypeEspace.SelectedValue);
+                TypeEspace typeEspace = Controller.TypeEspace.ObtenirTypeEspace((int)cmbTypeEspace.SelectedValue);
                 txtDescription.Text = typeEspace.Description;
 
             }
 
-            txtTps.Text = (_controllerTaxe.ObtenirTpsPlusRecente().Taux * 100).ToString() + " %";
-            txtTvq.Text = (_controllerTaxe.ObtenirTvqPlusRecente().Taux * 100).ToString() + " %";
+            txtTps.Text = (Controller.Taxe.ObtenirTpsPlusRecente().Taux * 100).ToString() + " %";
+            txtTvq.Text = (Controller.Taxe.ObtenirTvqPlusRecente().Taux * 100).ToString() + " %";
 
             cmbTypeEspace_SelectedIndexChanged(sender, e);
         }
 
 
-
-        private void btnAppliquer_Click(object sender, EventArgs e)
-        {
-            if (chkBoxCreerTypeEspace.Checked)
-            {
-                _dernierTypeEspaceIdAjouter = _controllerTypeEspace.AjouterTypeEspace(ObtenirInfoTypeEspace()).TypeEspaceId;
-
-                if (cmbTypeEspace.Items.Count != 0)
-                {
-                    cmbTypeEspace.SelectedItem = cmbTypeEspace.Items[cmbTypeEspace.Items.Count - 1];
-                    txtNoLocal.Visible = true;
-                    chkBoxDisponible.Visible = true;
-                    lblNoLocal.Visible = true;
-                }
-            }
-            Espace espace = new Espace();
-
-            if (_controllerTypeEspace.ObtenirNombreTypeEspace() != 0)
-                espace = _controllerEspace.AjouterEspace(ObtenirInfoEspace());
-
-            _dernierEspaceIdAjouter = espace.EspaceId;
-
-            DossierEspace ds = new DossierEspace();
-
-
-            groupBoxInfoEspace.Controls.Clear();
-            if (radioButtonLocal.Checked)
-                groupBoxInfoEspace.Controls.Add(ds.ObtenirDossier(_controllerLocal.AjouterLocal(ObtenirInfoLocal())));
-            else if (radioButtonStationnement.Checked)
-                groupBoxInfoEspace.Controls.Add(ds.ObtenirDossier(_controllerStationnement.AjouterStationnement(ObtenirInfoStationnement())));
-
-            //cmbTypeEspace.Update();
-            this.typeEspaceTableAdapter.Fill(this.dataSetVille.TypeEspace);
-        }
 
         private Local ObtenirInfoLocal()
         {
@@ -149,6 +100,7 @@ namespace IDM2
                 }
 
                 typeEspace.SiteId = (int)cmbSite.SelectedValue;
+                typeEspace.EstLocal = radioButtonLocal.Checked;
 
                 return typeEspace;
             }
@@ -160,7 +112,7 @@ namespace IDM2
         {
             Espace espace = new Espace();
 
-            espace.Disponible = true;
+            espace.Disponible = chkBoxDisponible.Checked;
 
             if (!chkBoxCreerTypeEspace.Checked)
                 espace.TypeEspaceId = (int)cmbTypeEspace.SelectedValue;
@@ -190,7 +142,7 @@ namespace IDM2
                 type = radioButtonLocal.AccessibleDescription;
 
             if (radioButtonLocal.Checked)
-                txtDescription.Text = type + "  \"" + txtLargeur.Text + "\"  " + " X " + "  \"" + txtLongueur.Text + "\" \r\n" + txtPrix.Text + "$";
+                   txtDescription.Text = type + "  \"" + txtLargeur.Text + "\"  " + " X " + "  \"" + txtLongueur.Text + "\" \r\n" + txtPrix.Text + "$";
             else if (radioButtonStationnement.Checked)
                 txtDescription.Text = type + " \r\n" + txtPrix.Text + "$";
 
@@ -236,19 +188,24 @@ namespace IDM2
             {
                 montant = Convert.ToDecimal(txtPrix.Text);
 
-                txtMontantAvTaxe.Text = _controllerPaiement.ObtenirMontantAvantTaxe(montant).ToString("0.00") + " $";
-                txtMontantTps.Text = _controllerPaiement.ObtenirMontantTps(montant).ToString("0.00") + " $";
-                txtMontantTvq.Text = _controllerPaiement.ObtenirMontantTvq(montant).ToString("0.00") + " $";
+                txtMontantAvTaxe.Text = Controller.Paiement.ObtenirMontantAvantTaxe(montant).ToString("0.00") + " $";
+                txtMontantTps.Text = Controller.Paiement.ObtenirMontantTps(montant).ToString("0.00") + " $";
+                txtMontantTvq.Text = Controller.Paiement.ObtenirMontantTvq(montant).ToString("0.00") + " $";
             }
             catch { }
         }
 
         private void cmbTypeEspace_SelectedIndexChanged(object sender, EventArgs e)
         {
+            AfficherListEspace();
+        }
+
+        private void AfficherListEspace()
+        {
 
             try
             {
-                _typeEspaceSelectionner = _controllerTypeEspace.ObtenirTypeEspace((int)cmbTypeEspace.SelectedValue);
+                _typeEspaceSelectionner = Controller.TypeEspace.ObtenirTypeEspace((int)cmbTypeEspace.SelectedValue);
 
                 txtDescription.Text = _typeEspaceSelectionner.Description;
                 txtPrix.Text = _typeEspaceSelectionner.Prix.ToString();
@@ -261,23 +218,18 @@ namespace IDM2
             }
             catch { }
 
-            AfficherListEspace();
-        }
-
-        private void AfficherListEspace()
-        {
             listBoxLocal.Items.Clear();
 
-            if (_controllerTypeEspace.ObtenirNombreTypeEspace() != 0 && cmbTypeEspace.Items.Count != 0)
+            if (Controller.TypeEspace.ObtenirNombreTypeEspace() != 0 && cmbTypeEspace.Items.Count != 0 && _typeEspaceSelectionner != null)
             {
                 _listEspaceAfficher.Clear();
-                _listEspaceAfficher.AddRange(_controllerEspace.ObtenirEspaces(_typeEspaceSelectionner.TypeEspaceId));
+                _listEspaceAfficher.AddRange(Controller.Espace.ObtenirEspacesParType(_typeEspaceSelectionner.TypeEspaceId));
 
                 for (int i = 0; i < _listEspaceAfficher.Count; i++)
                     if (_listEspaceAfficher[i].Stationnement != null)
-                        listBoxLocal.Items.Add(_controllerStationnement.ObtenirStationnement(_listEspaceAfficher[i].EspaceId).NoStationnement.ToString());
+                        listBoxLocal.Items.Add(Controller.Stationnement.ObtenirStationnement(_listEspaceAfficher[i].EspaceId).NoStationnement.ToString());
                     else if (_listEspaceAfficher[i].Local != null)
-                        listBoxLocal.Items.Add(_controllerLocal.ObtenirLocal(_listEspaceAfficher[i].EspaceId).NoLocal.ToString());
+                        listBoxLocal.Items.Add(Controller.Local.ObtenirLocal(_listEspaceAfficher[i].EspaceId).NoLocal.ToString());
             }
         }
 
@@ -288,13 +240,13 @@ namespace IDM2
 
             if (espace.Stationnement != null)
             {
-                Stationnement stationnement = _controllerStationnement.ObtenirStationnement(espace.EspaceId);
+                Stationnement stationnement = Controller.Stationnement.ObtenirStationnement(espace.EspaceId);
                 groupBoxInfoEspace.Controls.Clear();
                 groupBoxInfoEspace.Controls.Add(ds.ObtenirDossier(stationnement));
             }
             else if (espace.Local != null)
             {
-                Local local = _controllerLocal.ObtenirLocal(espace.EspaceId);
+                Local local = Controller.Local.ObtenirLocal(espace.EspaceId);
 
                 groupBoxInfoEspace.Controls.Clear();
                 groupBoxInfoEspace.Controls.Add(ds.ObtenirDossier(local));
@@ -308,26 +260,29 @@ namespace IDM2
 
         private void chkBoxCreerLocal_CheckedChanged(object sender, EventArgs e)
         {
+            if (cmbTypeEspace.SelectedItem == null && chkBoxCreerLocal.Checked)
+            {
+                MessageBox.Show("Veuillez selectionner un type d'espace");
+                chkBoxCreerLocal.Checked = false;
+                return;
+            }
 
             if (chkBoxCreerLocal.Checked)
             {
+            //    Vue.VueModifierTaxe v = new VueModifierTaxe();
+            //    GroupBox g = v.ObtenirVue();
+            //    g.Location = gbCreationTypeEspace.Location;
+            //    groupBoxAjoutEspace.Controls.Add(g);
+
                 chkBoxCreerTypeEspace.Checked = false;
                 groupBoxAjoutLocal.Location = gbCreationTypeEspace.Location;
                 groupBoxAjoutLocal.Visible = true;
                 if (cmbTypeEspace.Items.Count != 0)
                     cmbTypeEspace.SelectedIndex = 0;
             }
-            else if (cmbTypeEspace.SelectedItem == null)
-            {
-                MessageBox.Show("Veuillez selectionner un type d'espace");
-                chkBoxCreerLocal.Checked = false;
-                return;
-            }
             else
                 groupBoxAjoutLocal.Visible = false;
         }
-
-
 
         private void chkBoxCreerTypeEspace_CheckedChanged(object sender, EventArgs e)
         {
@@ -337,7 +292,6 @@ namespace IDM2
             {
                 chkBoxCreerLocal.Checked = false;
                 gbCreationTypeEspace.Visible = true;
-                _creerTypeEspace = true;
                 radioButtonLocal.Enabled = true;
                 radioButtonStationnement.Enabled = true;
                 txtLargeur.Enabled = true;
@@ -361,7 +315,6 @@ namespace IDM2
             else
             {
                 gbCreationTypeEspace.Visible = false;
-                _creerTypeEspace = false;
                 radioButtonLocal.Enabled = false;
                 radioButtonStationnement.Enabled = false;
                 txtLargeur.Enabled = false;
@@ -380,6 +333,69 @@ namespace IDM2
             else
                 chkBoxDisponible.BackColor = Color.Salmon;
 
+        }
+
+        private void cmbSite_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FillDataBySite();
+            AfficherListEspace();
+        }
+
+        private void FillDataBySite()
+        {
+            if (cmbSite.SelectedValue != null)
+                this.typeEspaceTableAdapter.FillBySiteId(this.dataSetVille.TypeEspace, (int)cmbSite.SelectedValue);
+        }
+
+        private void btnLocalAppliquer_Click(object sender, EventArgs e)
+        {
+            _dernierEspaceIdAjouter = Controller.Espace.AjouterEspace(ObtenirInfoEspace()).EspaceId;
+
+            if (Controller.Espace.EstLocal(_dernierEspaceIdAjouter))
+                Controller.Local.AjouterLocal(ObtenirInfoLocal());
+            else
+                Controller.Stationnement.AjouterStationnement(ObtenirInfoStationnement());
+
+            btnLocalAppliquer.Enabled = false;
+            AfficherListEspace();
+        }
+
+        private void btnTypeAppliquer_Click(object sender, EventArgs e)
+        {
+            Controller.TypeEspace.AjouterTypeEspace(ObtenirInfoTypeEspace());
+            FillDataBySite();
+
+            btnTypeAppliquer.Enabled = false;
+            chkBoxCreerLocal.Visible = true;
+        }
+
+        private void btnTypeOk_Click(object sender, EventArgs e)
+        {
+            btnTypeAppliquer.PerformClick();
+            btnTypeAnnuler.PerformClick();
+        }
+
+        private void btnTypeAnnuler_Click(object sender, EventArgs e)
+        {
+            gbCreationTypeEspace.Visible = false;
+            chkBoxCreerTypeEspace.Checked = false;
+        }
+
+        private void btnLocalOk_Click(object sender, EventArgs e)
+        {
+            btnLocalAppliquer.PerformClick();
+            btnLocalAnnuler.PerformClick();
+        }
+
+        private void btnLocalAnnuler_Click(object sender, EventArgs e)
+        {
+            groupBoxAjoutLocal.Visible = false;
+            chkBoxCreerLocal.Checked = false;
+        }
+
+        private void txtNoLocal_TextChanged(object sender, EventArgs e)
+        {
+            btnLocalAppliquer.Enabled = true;
         }
     }
 }

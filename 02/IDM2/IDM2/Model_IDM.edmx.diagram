@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="606b567fd5304250bffea99116c29a74" Name="Diagramme1">
+        <EntityTypeShape EntityType="IDM_DATAModel.Client" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IDM_DATAModel.CodeElectronique" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IDM_DATAModel.Connexion" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IDM_DATAModel.Contrat" Width="1.5" PointX="9.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IDM_DATAModel.Espace" Width="1.5" PointX="7.5" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IDM_DATAModel.Local" Width="1.5" PointX="9.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IDM_DATAModel.Loyer" Width="1.5" PointX="12" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IDM_DATAModel.MethodePaiement" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IDM_DATAModel.Paiement" Width="1.5" PointX="14.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IDM_DATAModel.Site" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IDM_DATAModel.Stationnement" Width="1.5" PointX="9.75" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IDM_DATAModel.Taxe" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IDM_DATAModel.Telephone" Width="1.5" PointX="5.25" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IDM_DATAModel.TypeEspace" Width="1.5" PointX="5.25" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="IDM_DATAModel.Vehicule" Width="1.5" PointX="12" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IDM_DATAModel.Ville" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IDM_DATAModel.DisponibiliteEspace_Client" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IDM_DATAModel.DossiersLocalView" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IDM_DATAModel.DossierStationnementView" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="IDM_DATAModel.Client_Methode_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="IDM_DATAModel.Client_Ville_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="IDM_DATAModel.CodeElectronique_Client_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="IDM_DATAModel.Contrat_Client_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="IDM_DATAModel.Paiement_Client_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="IDM_DATAModel.CodeElectronique_Site_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="IDM_DATAModel.Contrat_Espace_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="IDM_DATAModel.Loyer_Contrat_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="IDM_DATAModel.Espace_Stationnement_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="IDM_DATAModel.Espace_TypeEspace_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="IDM_DATAModel.Local_Espace_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="IDM_DATAModel.Site_Vill_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="IDM_DATAModel.TypeEspace_Site_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="IDM_DATAModel.Vehicule_Stationnement_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="IDM_DATAModel.ClientTelephone" ManuallyRouted="false" />
+        <AssociationConnector Association="IDM_DATAModel.LoyerPaiement" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

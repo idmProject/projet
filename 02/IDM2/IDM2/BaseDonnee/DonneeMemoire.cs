@@ -9,15 +9,13 @@ namespace IDM2.BaseDonnee
 {
     public static class DonneeMemoire
     {
-        private static CoTaxe _controllerTaxe;
         public static Taxe Tps  { get; set; }
         public static Taxe Tvq { get; set; }
 
         static DonneeMemoire()
         {
-            _controllerTaxe = new CoTaxe();
-            Tps = _controllerTaxe.ObtenirTpsPlusRecente();
-            Tvq = _controllerTaxe.ObtenirTvqPlusRecente();
+            Tps = Controller.Taxe.ObtenirTpsPlusRecente();
+            Tvq = Controller.Taxe.ObtenirTvqPlusRecente();
         }
 
         public static void Initialiser()

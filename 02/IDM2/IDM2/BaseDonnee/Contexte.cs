@@ -17,5 +17,7 @@ namespace IDM2.BaseDonnee
         {
             _bd = new IDM_DATAEntities();
         }
+
+        
     }
 }
